@@ -1,4 +1,4 @@
-package application;
+package zeldaking;
 	
 	
 import java.io.File;
