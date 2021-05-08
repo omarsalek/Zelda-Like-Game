@@ -1,6 +1,5 @@
-package application;
-	
-	
+package src.application;
+
 import java.io.File;
 import java.net.URL;
 
@@ -10,13 +9,12 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = FXMLLoader.load(getClass().getResource("vue/Zelda-king.fxml"));
-			Scene scene = new Scene(root,800,600);
+			BorderPane root = FXMLLoader.load(getClass().getResource("vue/Zelda-King.fxml"));
+			Scene scene = new Scene(root, 800, 600);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -28,4 +26,3 @@ public class Main extends Application {
 		launch(args);
 	}
 }
-
