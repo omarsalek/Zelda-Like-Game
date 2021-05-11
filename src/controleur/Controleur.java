@@ -42,6 +42,7 @@ import src.modele.Terrain;
 public class Controleur implements Initializable {
 	// permet de definir l'animation
 	private Timeline gameLoop;
+	private Boolean enterPressed = false;
 
 	private int temps;
 	@FXML
@@ -91,6 +92,10 @@ public class Controleur implements Initializable {
 
 	@FXML
 	void DeplacerLink(KeyEvent e) {
+		if(enterPressed){
+            e.consume();//L'evenement est consommée
+            return;
+        }
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
@@ -125,25 +130,7 @@ public class Controleur implements Initializable {
 		linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
 
 	}
-//	public  void  rafraichirPanneauJeu(){
-//		for (Acteur a :  this .){
-//		Circle  c  = (Circle) 
-//		this.panneauJeu.lookup("#"+a.getId());//si  c’ est  un nouveau n ́e
-//		if (c==null){
-//			creerSprite(a);
-//			}else{
-//	c .setTranslateX(a.getX());
-//	c.setTranslateY(a.getY());}}// pour enlever  les  morts,  il  faut  parcourir  les   sprites ...for  ( int  i =this.panneauJeu.getChildren().size()−1; i>=0;i−−){Node 
-//	c=this.panneauJeu.getChildren().get(i) ;
-//	Acteur a = this.env.getActeur(c.getId ());
-//	if (a==null){this . panneauJeu.getChildren().remove(c);}}
-	public  void  rafraichirPanneauJeu(){
-		
-		Image link1 = new Image(getClass().getResourceAsStream("link.png"));
-		ImageView linkView = new ImageView(link1);
-		tilepane.getChildren().remove(linkView);
-	
-	}
+
 	
 
 	private void initAnimation() {
@@ -157,11 +144,11 @@ public class Controleur implements Initializable {
 				// on dÃ©finit ce qui se passe Ã  chaque frame
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
-					if (temps == 200) {
-
-						JOptionPane.showMessageDialog(null, "Jeu Arreté recommencé !");
-						rafraichirPanneauJeu();
+					if (temps == 1000) {
+						//System.out.println("Jeu Arreté !");						
+						enterPressed = true;
 						gameLoop.stop();
+						JOptionPane.showMessageDialog(null, "Jeu arreté ,Au revoir !");
 						
 					}
 					
@@ -180,12 +167,16 @@ public class Controleur implements Initializable {
 		tilepane.setPadding(new Insets(121));
 		tilepane.setMaxHeight(570);
 		tilepane.setMaxWidth(570);
+		
 		this.link = new Link();
 		this.creerLink(link);
-		initAnimation();
 		// demarre l'animation
+		initAnimation();
 		gameLoop.play();
-
+		
+		
+		 
+		
 	}
 
 }
