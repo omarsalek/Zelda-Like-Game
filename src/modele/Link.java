@@ -23,20 +23,6 @@ public class Link extends Acteur{
 		this.setY(nposY);
 	}
 	
-	public void ArreterLeJeu() {
-		int nposY=this.getY();
-		int nposX=this.getX();
-		this.setX(nposX);
-		this.setY(nposY);
-		
-	}
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public void attaque() {
