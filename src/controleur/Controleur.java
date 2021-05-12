@@ -41,7 +41,7 @@ import src.modele.Terrain;
 
 public class Controleur implements Initializable {
 	// permet de definir l'animation
-	private Timeline gameLoop;
+	private Timeline gameLoop;//timeline
 
 	private int temps;
 	@FXML
@@ -128,12 +128,12 @@ public class Controleur implements Initializable {
 //	public  void  rafraichirPanneauJeu(){
 //		for (Acteur a :  this .){
 //		Circle  c  = (Circle) 
-//		this.panneauJeu.lookup("#"+a.getId());//si  c’ est  un nouveau n ́e
+//		this.panneauJeu.lookup("#"+a.getId());//si  câ€™ est  un nouveau n Ì�e
 //		if (c==null){
 //			creerSprite(a);
 //			}else{
 //	c .setTranslateX(a.getX());
-//	c.setTranslateY(a.getY());}}// pour enlever  les  morts,  il  faut  parcourir  les   sprites ...for  ( int  i =this.panneauJeu.getChildren().size()−1; i>=0;i−−){Node 
+//	c.setTranslateY(a.getY());}}// pour enlever  les  morts,  il  faut  parcourir  les   sprites ...for  ( int  i =this.panneauJeu.getChildren().size()âˆ’1; i>=0;iâˆ’âˆ’){Node 
 //	c=this.panneauJeu.getChildren().get(i) ;
 //	Acteur a = this.env.getActeur(c.getId ());
 //	if (a==null){this . panneauJeu.getChildren().remove(c);}}
@@ -152,14 +152,14 @@ public class Controleur implements Initializable {
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
 		KeyFrame kf = new KeyFrame(
-				// on dÃ©finit le FPS (nbre de frame par seconde)
+				// on dÃƒÂ©finit le FPS (nbre de frame par seconde)
 				Duration.seconds(0.017),
-				// on dÃ©finit ce qui se passe Ã  chaque frame
+				// on dÃƒÂ©finit ce qui se passe ÃƒÂ  chaque frame
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 					if (temps == 200) {
 
-						JOptionPane.showMessageDialog(null, "Jeu Arreté recommencé !");
+						JOptionPane.showMessageDialog(null, "Jeu ArretÃ© recommencÃ© !");
 						rafraichirPanneauJeu();
 						gameLoop.stop();
 						
