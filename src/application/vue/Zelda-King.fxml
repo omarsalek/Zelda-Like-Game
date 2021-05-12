@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
+   <top>
+      <Label prefHeight="32.0" prefWidth="114.0" text="Zelda King" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TilePane fx:id="tilepane" orientation="VERTICAL" prefHeight="303.0" prefWidth="496.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
