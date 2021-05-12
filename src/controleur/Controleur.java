@@ -1,7 +1,7 @@
 package src.controleur;
 
 
-import java.net.URL;
+import java.net.URL;//cc
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -45,7 +45,7 @@ public class Controleur implements Initializable {
 	private Link link;
 	@FXML
 	//private BorderPane Borderpane;
-
+	//
 	private void afficherterrain() {
 
 		for (int i1 = 0; i1 < terrain.getCarte().length; i1++) {
