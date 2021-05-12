@@ -42,7 +42,7 @@ import src.modele.Terrain;
 public class Controleur implements Initializable {
 	// permet de definir l'animation
 	private Timeline gameLoop;//timeline
-
+	//V2
 	private int temps;
 	@FXML
 	private TilePane tilepane;
