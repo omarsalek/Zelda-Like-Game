@@ -22,25 +22,6 @@ public class Terrain {
 		this.Carte = Carte;
 	}
 
-	public int largueurCarte() {
-		int largueur = 0;
-		for (int i = 1; i < Carte.length; i++) {
-			largueur += 1;
-		}
-		return largueur;
-	}
-
-	public int HauteurCarte() {
-		int Hauteur = 0;
-		for (int i = 1; i < Carte.length; i++) {
-			for (int j = 0; j < Carte.length; j++) {
-				Hauteur = j + 1;
-			}
-
-		}
-		return Hauteur;
-	}
-
 	public int[][] getCarte() {
 		return Carte;
 	}

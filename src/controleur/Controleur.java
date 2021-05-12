@@ -55,7 +55,7 @@ public class Controleur implements Initializable {
 
 	private Link link;
 	@FXML
-	private BorderPane Borderpane;
+	//private BorderPane Borderpane;
 
 	private void afficherterrain() {
 
