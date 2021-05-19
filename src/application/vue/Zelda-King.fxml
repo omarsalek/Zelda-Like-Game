@@ -17,6 +17,6 @@
       </Label>
    </top>
    <center>
-      <TilePane fx:id="tilepane" orientation="VERTICAL" prefHeight="303.0" prefWidth="496.0" BorderPane.alignment="CENTER" />
+      <TilePane fx:id="tilepane" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

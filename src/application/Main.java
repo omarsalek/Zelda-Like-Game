@@ -1,16 +1,15 @@
 package src.application;
 
-import java.io.File;
-import java.net.URL;
+
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
+//import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
+//import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
