@@ -18,7 +18,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = FXMLLoader.load(getClass().getResource("../vue/Zelda-King.fxml"));
-			Scene scene = new Scene(root, 400, 600);
+			Scene scene = new Scene(root, 1000, 700);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			scene.getRoot().requestFocus();

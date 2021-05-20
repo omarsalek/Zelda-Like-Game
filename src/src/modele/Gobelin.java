@@ -2,13 +2,13 @@ package src.modele;
 
 public class Gobelin extends Acteur {
 
-	public Gobelin(String nom, String arme, int ptA, int ptv,int x,int y) {
-		super(nom, arme, ptA, ptv,x,y);
-		// TODO Auto-generated constructor stub
+	public Gobelin(Environnement env) {
+		super("Gobelin","poignard", 2, 16,-300,20, env);
 	}
 
 	@Override
-	public void attaque() {
+	public boolean attaque() {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -19,10 +19,6 @@ public class Gobelin extends Acteur {
 		
 	}
 
-	@Override
-	public void seDeplace() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }
