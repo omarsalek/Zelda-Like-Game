@@ -6,14 +6,17 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
 <BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
    <top>
-      <Label prefHeight="32.0" prefWidth="114.0" text="Zelda King" BorderPane.alignment="CENTER">
+      <Label prefHeight="33.0" prefWidth="596.0" text="                         Zelda King" BorderPane.alignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
+         <graphic>
+            <Ellipse fx:id="Coeurs" fill="DODGERBLUE" radiusX="58.0" radiusY="14.0" stroke="BLACK" strokeType="INSIDE" />
+         </graphic>
       </Label>
    </top>
    <center>

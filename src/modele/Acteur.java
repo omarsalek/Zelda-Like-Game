@@ -13,8 +13,8 @@ public abstract class Acteur {
 	private IntegerProperty yProperty;
 	private String arme;
 	private int pointsATT;
-	private int pointsVIE;
-	//private IntegerProperty pointsVIE;
+	//private int pointsVIE;
+	private IntegerProperty pointsVIE;
 	private String id;
 	protected Environnement env;
 	public static int compteur = 0;
@@ -26,8 +26,8 @@ public abstract class Acteur {
 		this.yProperty = new SimpleIntegerProperty(y);
 		this.arme = arme;
 		this.pointsATT = ptA;
-		this.pointsVIE = ptv;
-		//this.pointsVIE = new SimpleIntegerProperty(ptv);
+		//this.pointsVIE = ptv;
+		this.pointsVIE = new SimpleIntegerProperty(ptv);
 		this.id = "A" + compteur;
 		compteur++;
 	}
@@ -59,23 +59,24 @@ public abstract class Acteur {
 
 	public String getId() {
 		return id;
-	}	public int getPtv() {
-	return pointsVIE;
-}
-
-public void setPTV(int ptv) {
-	this.pointsVIE=ptv;
-}
+	}	
 //	public int getPtv() {
-//		return pointsVIE.getValue();
-//	}
+//	return pointsVIE;
+//}
 //
-//	public void setPTV(int ptv) {
-//		this.pointsVIE.setValue(ptv);
-//	}
-//	public final IntegerProperty pointsVIE() {
-//		return this.pointsVIE;
-//	}
+//public void setPTV(int ptv) {
+//	this.pointsVIE=ptv;
+//}
+	public int getPtv() {
+		return pointsVIE.getValue();
+	}
+
+	public void setPTV(int ptv) {
+		this.pointsVIE.setValue(ptv);
+	}
+	public final IntegerProperty pointsVIE() {
+		return this.pointsVIE;
+	}
 
 	public String getNom() {
 		return nom;
@@ -105,19 +106,18 @@ public void setPTV(int ptv) {
 //		return this.pointsVIE > 0;
 //			
 //	}
-//	public void meurt(){
-//		this.pointsVIE=0;
+
+//	public void decrementerPv(int n) {
+//		this.pointsVIE-=n;	
+//	}
+	
+//	
+//	public void incrementerPv(int n) {
+//		this.pointsVIE+=n;	
 //	}
 	public void decrementerPv(int n) {
-		this.pointsVIE-=n;	
+		this.pointsVIE.setValue(this.pointsVIE.getValue()-n);
 	}
-	
-	public void incrementerPv(int n) {
-		this.pointsVIE+=n;	
-	}
-//	public void decrementerPv(int n) {
-//		this.pointsVIE.setValue(n);	
-//	}
 
 
 	public abstract boolean attaque();

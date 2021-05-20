@@ -1,9 +1,10 @@
 package src.modele;
 
+import javax.swing.JOptionPane;
 
 public class Link extends Acteur {
 	public Link(Environnement env) {
-		super("Link", "poignard", 4, 16, -400,400,env);
+		super("Link", "poignard", 4, 20, -400,440,env);
 	}
 	
 	public void DeplacerLinkRight() {
@@ -28,26 +29,31 @@ public class Link extends Acteur {
 
 	@Override
 	public boolean attaque() {
+		
 		boolean mort = false;
 		Acteur m = this.TrouverEnnemi();
 		
 		if(m!=null ){
 			System.out.println("Link attaque un Gobelin");
 			m.decrementerPv(this.getPointsATT());
-			
 			this.decrementerPv(m.getPointsATT());
+
 			System.out.println("Points de vie de Link est : " + this.getPtv());
 			if (m.getPtv()==0) {
 		        System.out.println("Gobelin mort");
 		        this.env.getActeurs().remove(m);
 		        mort=true;
 			}
+			if (this.getPtv()==0) {
+		        JOptionPane.showMessageDialog(null,"Link mort");
+		       
+		        
+			}
 	
 		}
 		else{
 			System.out.println("il n'ya pas de gobelin à coté ");
 		}
-		
 		
 		return mort;
 	}
@@ -57,8 +63,8 @@ public class Link extends Acteur {
 		// on regarde s'il y a un Gobelin a moins de 4 pixels de lui.
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Gobelin) {
-				if ((this.getY() -5<= m.getY() && m.getY() <= this.getY() +5)
-					||(this.getX() -5<= m.getX() && m.getX() <= this.getX() +5)) {
+				if ((this.getY() -6<= m.getY() && m.getY() <= this.getY() +6)
+				||(this.getX() -6<= m.getX() && m.getX() <= this.getX() +6)) {
 					return m;
 				}
 			}					

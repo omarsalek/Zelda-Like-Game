@@ -3,8 +3,9 @@ package src.modele;
 public class Gobelin extends Acteur {
 
 	public Gobelin(Environnement env) {
-		super("Gobelin","poignard", 2, 16,-300,20, env);
+		super("Gobelin","poignard", 2, 16,-400, 400, env);
 	}
+	
 
 	@Override
 	public boolean attaque() {
@@ -21,8 +22,17 @@ public class Gobelin extends Acteur {
 
 	@Override
 	public void seDeplace() {
-		// TODO Auto-generated method stub
+	if (Math.random()<0.5) {
+	int val = -5+ (int)(Math.random() * (5));
+		this.setX(this.getX()-val);
+		this.setY(this.getY()+val);
+	}
+	else {
+		int val2 = -5+ (int)(Math.random() * (5));
+		this.setX(this.getX()+val2);
+		this.setY(this.getY()-val2);
 		
 	}
 
-}
+}}
+
