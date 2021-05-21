@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
+<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
    <top>
       <Label prefHeight="33.0" prefWidth="596.0" text="                         Zelda King" BorderPane.alignment="CENTER">
          <font>
@@ -20,6 +20,10 @@
       </Label>
    </top>
    <center>
-      <TilePane fx:id="tilepane" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="pane">
+         <children>
+            <TilePane fx:id="tilepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" />
+         </children>
+      </Pane>
    </center>
 </BorderPane>

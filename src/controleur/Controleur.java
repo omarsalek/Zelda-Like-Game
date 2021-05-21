@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 //import javafx.scene.image.ImageView;
 //import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -39,25 +39,25 @@ import src.modele.Terrain;
 
 public class Controleur implements Initializable {
 	// permet de definir l'animation
-	  @FXML
-	    private Ellipse Coeurs;
-	
-	private Timeline gameLoop;
-	private Boolean enterPressed = false;
-	// modif
-	private int temps;
-	private VueGobelin GobelinVue;
-	private VueTerrain terrainVue;
+	@FXML
+	private Ellipse Coeurs;
 	@FXML
 	private TilePane tilepane;
-	private Environnement env;
+	@FXML
+	private Pane pane;
 	@FXML
 	private Button CommencerJeu;
 
+	private Timeline gameLoop;
+	private Boolean enterPressed = false;
+	private int temps;
+	private VueGobelin GobelinVue;
+	private VueTerrain terrainVue;
 	private Terrain terrain;
 	private VueLink linkVue;
 	private Link link;
 	private Gobelin Gobelin;
+	private Environnement env;
 
 	@FXML
 	void DeplacerLink(KeyEvent e) {
@@ -68,23 +68,23 @@ public class Controleur implements Initializable {
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
-			this.link.DeplacerLinkRight();
+			this.link.DeplacerLinkRight(this.terrain);
 			break;
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
-			this.link.DeplacerLinkLeft();
+			this.link.DeplacerLinkLeft(this.terrain);
 			break;
 		case UP:
 			System.out.println("Link se deplace en haut ");
-			this.link.DeplacerLinkUP();
+			this.link.DeplacerLinkUP(this.terrain);
 			break;
 		case DOWN:
 			System.out.println("Link se deplace en bas ");
-			this.link.DeplacerLinkDown();
+			this.link.DeplacerLinkDown(this.terrain);
 			break;
 		case A:
 			this.AttaquerEtRefraiche();
-			
+
 			break;
 
 		default:
@@ -95,11 +95,11 @@ public class Controleur implements Initializable {
 	}
 
 	private void AttaquerEtRefraiche() {
-		for (int i = this.tilepane.getChildren().size() - 1; i >= 0; i--) {
-			Node c = this.tilepane.getChildren().get(i);
+		for (int i = this.pane.getChildren().size() - 1; i >= 0; i--) {
+			Node c = this.pane.getChildren().get(i);
 			if (c.getId() != null) {
 				if (c instanceof ImageView && this.link.attaque() == true) {
-					this.tilepane.getChildren().remove(c);
+					this.pane.getChildren().remove(c);
 				}
 
 			}
@@ -123,13 +123,11 @@ public class Controleur implements Initializable {
 						gameLoop.stop();
 						JOptionPane.showMessageDialog(null, "Jeu arreté ,Au revoir !");
 
-					}
-					else {
+					} else {
 						this.Gobelin.seDeplace();
-						//this.Gobelin.DeplacerGobelinLeft();
+						// this.Gobelin.DeplacerGobelinLeft();
 
-						//this.Gobelin.DeplacerGobelinDown();
-
+						// this.Gobelin.DeplacerGobelinDown();
 
 					}
 					temps++;
@@ -142,18 +140,17 @@ public class Controleur implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		Coeurs.setFill(Color.RED);
-		
-		this.env = new Environnement(960,640);
+
+		this.env = new Environnement();
 		this.env.ajouter(link);
 		terrain = new Terrain();
-		tilepane.setPrefColumns(960);
 		this.terrainVue = new VueTerrain(terrain, tilepane);
 		this.terrainVue.afficherterrain();
 		this.link = new Link(env);
-		this.linkVue = new VueLink(tilepane);
+		this.linkVue = new VueLink(pane);
 		this.linkVue.creerLink(link);
 		Coeurs.radiusXProperty().bind(this.link.pointsVIE().multiply(1));
-		this.GobelinVue = new VueGobelin(tilepane, env);
+		this.GobelinVue = new VueGobelin(pane, env);
 		this.env.init();
 		this.Gobelin = new Gobelin(env);
 		this.GobelinVue.AfficherGobelin(Gobelin);

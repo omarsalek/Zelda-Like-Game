@@ -1,5 +1,7 @@
 package src.modele;
 
+import java.util.ArrayList;
+
 public class Terrain {
 
 	private int[][] Carte = { {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},
@@ -51,4 +53,6 @@ public class Terrain {
 	public int[][] getCarte() {
 		return Carte;
 	}
+
+
 }

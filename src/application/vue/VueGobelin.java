@@ -2,7 +2,7 @@ package src.application.vue;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import src.modele.Acteur;
@@ -10,11 +10,11 @@ import src.modele.Environnement;
 import src.modele.Gobelin;
 
 public class VueGobelin {
-	private TilePane tilepane;
+	private Pane pane;
 	private Environnement env;
 
-	public VueGobelin(TilePane tilepane, Environnement env) {
-		this.tilepane = tilepane;
+	public VueGobelin(Pane pane, Environnement env) {
+		this.pane = pane;
 		this.env = env;
 	}
 
@@ -34,7 +34,7 @@ public class VueGobelin {
 				//r.setTranslateY(nombreAleatoire);	
 				System.out.println(m.getId());
 				GobelinVue.setOnMouseClicked(e -> System.out.println("clic sur acteur" + e.getSource()));
-				this.tilepane.getChildren().add(GobelinVue);
+				pane.getChildren().add(GobelinVue);
 				
 			}
 		}

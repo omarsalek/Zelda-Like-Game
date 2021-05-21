@@ -13,7 +13,7 @@ public abstract class Acteur {
 	private IntegerProperty yProperty;
 	private String arme;
 	private int pointsATT;
-	//private int pointsVIE;
+	// private int pointsVIE;
 	private IntegerProperty pointsVIE;
 	private String id;
 	protected Environnement env;
@@ -21,24 +21,25 @@ public abstract class Acteur {
 
 	public Acteur(String nom, String arme, int ptA, int ptv, int x, int y, Environnement env) {
 		this.nom = nom;
-		this.env=env;
+		this.env = env;
 		this.xProperty = new SimpleIntegerProperty(x);
 		this.yProperty = new SimpleIntegerProperty(y);
 		this.arme = arme;
 		this.pointsATT = ptA;
-		//this.pointsVIE = ptv;
+		// this.pointsVIE = ptv;
 		this.pointsVIE = new SimpleIntegerProperty(ptv);
 		this.id = "A" + compteur;
 		compteur++;
 	}
-	
 
 	public final int getX() {
 		return xProperty.getValue();
 	}
 
-	public final void setX(int n) {
-		xProperty.setValue(n);
+	public final void setX(int x) {
+		if (this.env.estDansleTerrainX(x)) {
+			xProperty.setValue(x);
+		}
 	}
 
 	public final IntegerProperty xProperty() {
@@ -49,8 +50,10 @@ public abstract class Acteur {
 		return yProperty.getValue();
 	}
 
-	public final void setY(int n) {
-		yProperty.setValue(n);
+	public final void setY(int y) {
+		if (this.env.estDansleTerrainY(y)) {
+			yProperty.setValue(y);
+		}
 	}
 
 	public final IntegerProperty yProperty() {
@@ -59,7 +62,8 @@ public abstract class Acteur {
 
 	public String getId() {
 		return id;
-	}	
+	}
+
 //	public int getPtv() {
 //	return pointsVIE;
 //}
@@ -74,6 +78,7 @@ public abstract class Acteur {
 	public void setPTV(int ptv) {
 		this.pointsVIE.setValue(ptv);
 	}
+
 	public final IntegerProperty pointsVIE() {
 		return this.pointsVIE;
 	}
@@ -110,15 +115,14 @@ public abstract class Acteur {
 //	public void decrementerPv(int n) {
 //		this.pointsVIE-=n;	
 //	}
-	
+
 //	
 //	public void incrementerPv(int n) {
 //		this.pointsVIE+=n;	
 //	}
 	public void decrementerPv(int n) {
-		this.pointsVIE.setValue(this.pointsVIE.getValue()-n);
+		this.pointsVIE.setValue(this.pointsVIE.getValue() - n);
 	}
-
 
 	public abstract boolean attaque();
 
