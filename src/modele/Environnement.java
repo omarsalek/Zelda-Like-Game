@@ -2,15 +2,28 @@ package src.modele;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Environnement {
 	private ArrayList<Acteur> acteurs;
+	private IntegerProperty nbMortsProperty;	
 
 	public Environnement() {
 		super();
 		this.acteurs = new ArrayList<>();
+		this.nbMortsProperty = new SimpleIntegerProperty(0);
 
 	}
-
+	public final int getnbMorts() {
+		return this.nbMortsProperty.getValue();
+	}
+	public final IntegerProperty nbMortsProperty() {
+		return this.nbMortsProperty;
+	}
+	public final void setnbMortsProperty(int estmort) {
+		this.nbMortsProperty.setValue(estmort);
+	}
 	public void ajouter(Acteur a) {
 		acteurs.add(a);
 	}

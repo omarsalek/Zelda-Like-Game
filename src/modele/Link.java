@@ -130,6 +130,8 @@ public class Link extends Acteur {
 				System.out.println("Gobelin mort");
 				this.env.getActeurs().remove(m);
 				mort = true;
+				this.env.nbMortsProperty().setValue(this.env.nbMortsProperty().getValue()+1);
+
 			}
 			if (this.getPtv() == 0) {
 				JOptionPane.showMessageDialog(null, "Link mort");
@@ -145,7 +147,7 @@ public class Link extends Acteur {
 
 	private Acteur TrouverEnnemi() {
 
-		// on regarde s'il y a un Gobelin a moins de 4 pixels de lui.
+		// on regarde s'il y a un Gobelin a moins de 6 pixels de lui.
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Gobelin) {
 				if ((this.getY() - 6 <= m.getY() && m.getY() <= this.getY() + 6)

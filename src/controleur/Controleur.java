@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 //import javafx.scene.image.Image;
@@ -47,7 +48,8 @@ public class Controleur implements Initializable {
 	private Pane pane;
 	@FXML
 	private Button CommencerJeu;
-
+	@FXML
+    private Label labelNbMorts;
 	private Timeline gameLoop;
 	private Boolean enterPressed = false;
 	private int temps;
@@ -138,10 +140,10 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		Coeurs.setFill(Color.RED);
 
 		this.env = new Environnement();
+
 		this.env.ajouter(link);
 		terrain = new Terrain();
 		this.terrainVue = new VueTerrain(terrain, tilepane);
@@ -154,6 +156,7 @@ public class Controleur implements Initializable {
 		this.env.init();
 		this.Gobelin = new Gobelin(env);
 		this.GobelinVue.AfficherGobelin(Gobelin);
+		this.env.nbMortsProperty().addListener((obse,old,nouv)-> this.labelNbMorts.setText(nouv.toString()));
 
 		// demarre l'animation
 		initAnimation();
