@@ -6,14 +6,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import src.modele.Link;
+//Cette classe va nous permettre de gérer Link dans la vue.
 
 public class VueLink {
     private Pane pane ;
 
+    //Constructeur
     public VueLink(Pane pane) {
-    	this.pane=pane;
+        this.pane=pane;
     }
-    
+
+    //Cette méthode va créer Link dans la vue.
     public void creerLink(Link link) {
         Image link1 = new Image(getClass().getResourceAsStream("hero.png"));
         ImageView linkView = new ImageView(link1);
@@ -24,5 +27,4 @@ public class VueLink {
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
 
     }
-
 }

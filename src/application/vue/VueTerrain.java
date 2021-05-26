@@ -1,7 +1,7 @@
 package src.application.vue;
 
+//Cette classe gère le terrain sur la vue.
 import java.util.ArrayList;
-
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,16 +9,18 @@ import javafx.scene.layout.TilePane;
 import src.modele.Terrain;
 
 public class VueTerrain {
+	
 	private Terrain terrain;
-
 	private TilePane tilepane;
-
+	//Constructeur
 	public VueTerrain(Terrain terrain, TilePane tilepane) {
 		this.terrain = terrain;
 		this.tilepane = tilepane;
 	}
 
+	//Cette méthode va gérer l'affichage entier de notre terrain.S
 	public void afficherterrain() {
+		//On commence par créer les Image.
 		Image Arbre = new Image(getClass().getResourceAsStream("arbre.png"));
 		Image Arbre2 = new Image(getClass().getResourceAsStream("arbre2.png"));
 		Image Eau = new Image(getClass().getResourceAsStream("eau.png"));
@@ -27,13 +29,16 @@ public class VueTerrain {
 
 		int[][] codesTuiles = terrain.getCarte();
 
+		//for qui va parcourir et remplir le tableau d'images.
 		for (int y = 0; y < codesTuiles.length; y++) {
 			for (int x = 0; x < codesTuiles[y].length; x++) {
+				
 				ImageView ArbreView = new ImageView(Arbre);
 				ImageView Arbre2View = new ImageView(Arbre2);
 				ImageView EauView = new ImageView(Eau);
 				ImageView HerbeView = new ImageView(Herbe);
 				ImageView PierreView = new ImageView(Pierre);
+				//Switch case qui va faire la correspondace entre la tuile et l'image octroyé à chacun des numéros de la tuile.
 				switch (codesTuiles[y][x]) {
 				case 1:
 					tilepane.getChildren().add(PierreView);
@@ -51,16 +56,13 @@ public class VueTerrain {
 					tilepane.getChildren().add(ArbreView);
 					break;
 				default:
-					System.out.println("Pas de choix !");
 				}
-
 			}
 		}
-
 	}
-
-	public static boolean pasbouger(int codetuile) {
-		boolean PasBouger = false;
+	
+	public static boolean collisions(int codetuile) {
+		boolean blocage = false;
 		ArrayList<Integer> ListeNonAccessibles = new ArrayList<Integer>();
 		ListeNonAccessibles.add(1);
 		ListeNonAccessibles.add(2);
@@ -68,11 +70,10 @@ public class VueTerrain {
 		ListeNonAccessibles.add(4);
 		for (int i = 0; i < ListeNonAccessibles.size(); i++) {
 			if (ListeNonAccessibles.get(i) == codetuile) {
-				PasBouger = true;
+				blocage = true;
 			}
 		}
-		return PasBouger;
-	}
-	// switch---> TO DO il faut supprimer la liste et for et mettre un switch
+ 		return blocage;
 
+	}
 }

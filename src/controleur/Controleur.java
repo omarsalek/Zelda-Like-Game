@@ -1,6 +1,7 @@
 package src.controleur;
 
-import java.net.URL;//cc
+import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -39,7 +40,6 @@ import src.modele.Loup;
 import src.modele.Terrain;
 
 public class Controleur implements Initializable {
-	// permet de definir l'animation
 	@FXML
 	private Ellipse Coeurs;
 	@FXML
@@ -50,8 +50,9 @@ public class Controleur implements Initializable {
 	private Button CommencerJeu;
 	@FXML
     private Label labelNbMorts;
+	
 	private Timeline gameLoop;
-	private Boolean enterPressed = false;
+	private Boolean finDuJeu = false;
 	private int temps;
 	private VueGobelin GobelinVue;
 	private VueTerrain terrainVue;
@@ -61,12 +62,14 @@ public class Controleur implements Initializable {
 	private Gobelin Gobelin;
 	private Environnement env;
 
+	//Cette méthode va nous permettre de faire déplacer Link.
 	@FXML
 	void DeplacerLink(KeyEvent e) {
-		if (enterPressed) {
-			e.consume();// L'evenement est consommée
+		if (finDuJeu) {
+			e.consume();
 			return;
 		}
+		//Ce switch case va faire déplacer Link dans 4 directions différentes.
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
@@ -84,53 +87,43 @@ public class Controleur implements Initializable {
 			System.out.println("Link se deplace en bas ");
 			this.link.DeplacerLinkDown(this.terrain);
 			break;
+			//Ce cas "A" va gérer l'attaque de Link : lorsque l'utilisateur appuie sur a, Link attque l'ennemi.
 		case A:
-			this.AttaquerEtRefraiche();
-
+			this.attaquerEtRefresh();
 			break;
-
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
 			break;
 		}
-
 	}
 
-	private void AttaquerEtRefraiche() {
+	// Cette méthode va gérer l'attaque de Link et refresh la vue(acteur mort...).
+	private void attaquerEtRefresh() {
 		for (int i = this.pane.getChildren().size() - 1; i >= 0; i--) {
 			Node c = this.pane.getChildren().get(i);
 			if (c.getId() != null) {
 				if (c instanceof ImageView && this.link.attaque() == true) {
 					this.pane.getChildren().remove(c);
 				}
-
 			}
 		}
 	}
 
+	// Cette méthode est la boucle de notre jeu (timer pour l'instant).
 	private void initAnimation() {
 		gameLoop = new Timeline();
 		temps = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
 		KeyFrame kf = new KeyFrame(
-				// on dÃ©finit le FPS (nbre de frame par seconde)
 				Duration.seconds(0.7),
-				// on dÃ©finit ce qui se passe Ã  chaque frame
-				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 					if (temps == 200000) {
-						// System.out.println("Jeu Arreté !");
-						enterPressed = true;
+						finDuJeu = true;
 						gameLoop.stop();
 						JOptionPane.showMessageDialog(null, "Jeu arreté ,Au revoir !");
-
 					} else {
 						this.Gobelin.seDeplace();
-						// this.Gobelin.DeplacerGobelinLeft();
-
-						// this.Gobelin.DeplacerGobelinDown();
-
 					}
 					temps++;
 
@@ -146,22 +139,24 @@ public class Controleur implements Initializable {
 
 		this.env.ajouter(link);
 		terrain = new Terrain();
+		
 		this.terrainVue = new VueTerrain(terrain, tilepane);
 		this.terrainVue.afficherterrain();
+		
 		this.link = new Link(env);
 		this.linkVue = new VueLink(pane);
 		this.linkVue.creerLink(link);
 		Coeurs.radiusXProperty().bind(this.link.pointsVIE().multiply(1));
+		
 		this.GobelinVue = new VueGobelin(pane, env);
 		this.env.init();
 		this.Gobelin = new Gobelin(env);
-		this.GobelinVue.AfficherGobelin(Gobelin);
+		this.GobelinVue.afficherGobelin(Gobelin);
+		
 		this.env.nbMortsProperty().addListener((obse,old,nouv)-> this.labelNbMorts.setText(nouv.toString()));
 
-		// demarre l'animation
+		// démarre l'animation
 		initAnimation();
 		gameLoop.play();
-
 	}
-
 }
