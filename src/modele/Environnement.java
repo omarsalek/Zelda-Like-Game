@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Gobelin;
 
 public class Environnement {
 	private ArrayList<Acteur> acteurs;

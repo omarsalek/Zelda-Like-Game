@@ -6,9 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import src.modele.Acteur;
 import src.modele.Environnement;
-import src.modele.Gobelin;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Gobelin;
 
 public class VueGobelin {
 

@@ -1,8 +1,10 @@
-package src.modele;
+package src.modele.acteur;
 
 import javax.swing.JOptionPane;
 
 import src.application.vue.VueTerrain;
+import src.modele.Environnement;
+import src.modele.Terrain;
 
 public class Link extends Acteur {
 	public Link(Environnement env) {
