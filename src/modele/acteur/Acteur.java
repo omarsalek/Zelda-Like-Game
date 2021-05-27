@@ -1,5 +1,5 @@
 package src.modele.acteur;
-
+//Cette classe gère les acteurs : Link + ennemis
 import java.util.Random;
 
 import javafx.beans.property.IntegerProperty;

@@ -1,5 +1,5 @@
 package src.modele.acteur;
-
+//Cette classe va s'occuper de Link : ses attaques, ses pv, etc
 import javax.swing.JOptionPane;
 
 import src.application.vue.VueTerrain;

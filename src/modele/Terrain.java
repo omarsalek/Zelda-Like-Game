@@ -1,5 +1,5 @@
 package src.modele;
-
+//Ceci est la tuile de notre jeu.
 import java.util.ArrayList;
 
 public class Terrain {

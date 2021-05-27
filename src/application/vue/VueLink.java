@@ -1,5 +1,5 @@
 package src.application.vue;
-
+//Cette classe va nous permettre de gérer Link dans la vue.
 import javax.swing.JOptionPane;
 
 import javafx.scene.image.Image;

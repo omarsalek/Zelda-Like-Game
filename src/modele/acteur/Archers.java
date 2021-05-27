@@ -1,5 +1,5 @@
 package src.modele.acteur;
-
+//Cette classe gère les archers
 import src.modele.Environnement;
 
 public class Archers extends Acteur{

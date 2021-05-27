@@ -1,6 +1,6 @@
 package src.application.vue;
 
-//Cette classe gère le terrain sur la vue.
+//Cette classe gère le terrain.
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -21,11 +21,11 @@ public class VueTerrain {
 	//Cette méthode va gérer l'affichage entier de notre terrain.S
 	public void afficherterrain() {
 		//On commence par créer les Image.
-		Image Arbre = new Image(getClass().getResourceAsStream("arbre.png"));
-		Image Arbre2 = new Image(getClass().getResourceAsStream("arbre2.png"));
-		Image Eau = new Image(getClass().getResourceAsStream("eau.png"));
-		Image Herbe = new Image(getClass().getResourceAsStream("herbe.png"));
-		Image Pierre = new Image(getClass().getResourceAsStream("pierre.png"));
+		Image Arbre = new Image(getClass().getResourceAsStream("Arbre.png"));
+		Image Arbre2 = new Image(getClass().getResourceAsStream("Arbre2.png"));
+		Image Eau = new Image(getClass().getResourceAsStream("Eau.png"));
+		Image Herbe = new Image(getClass().getResourceAsStream("Herbe.png"));
+		Image Pierre = new Image(getClass().getResourceAsStream("Pierre.png"));
 
 		int[][] codesTuiles = terrain.getCarte();
 

@@ -1,5 +1,5 @@
 package src.modele.acteur;
-
+//Cette classe gère les gobleins.
 import src.modele.Environnement;
 
 public class Gobelin extends Acteur {

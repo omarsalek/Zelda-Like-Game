@@ -1,5 +1,5 @@
 package src.modele.acteur;
-
+//Cette classe va gérer les loups
 import src.modele.Environnement;
 
 public class Loup extends Acteur{

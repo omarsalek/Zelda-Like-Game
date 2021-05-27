@@ -38,7 +38,7 @@ import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
-
+//Ceci est le contrôleur de notre jeu
 public class Controleur implements Initializable {
 	@FXML
 	private Ellipse Coeurs;

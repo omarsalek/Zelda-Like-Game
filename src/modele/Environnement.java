@@ -1,5 +1,5 @@
 package src.modele;
-
+//Cette classe va gérer les acteurs, notament leur morts,..
 import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
