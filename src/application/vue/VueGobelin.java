@@ -4,8 +4,6 @@ package src.application.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import src.modele.Acteur;
 import src.modele.Environnement;
 import src.modele.Gobelin;

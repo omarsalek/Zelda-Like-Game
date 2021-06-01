@@ -3,14 +3,15 @@ package src.modele;
 public class Gobelin extends Acteur {
 
 	public Gobelin(Environnement env) {
-		super("Gobelin","poignard", 2, 16,615,377, env);
+		super("Gobelin","poignard", 2, 12,615,377, env);
 	}
 	
 
+
 	@Override
-	public boolean attaque() {
-		return false;
-		//TODO Auto-generated method stub
+	public void attaque() {
+		
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -34,5 +35,13 @@ public class Gobelin extends Acteur {
 		
 	}
 
-}}
+}
+
+
+
+	@Override
+	public void prendreArme() {
+		// TODO Auto-generated method stub
+		
+	}}
 

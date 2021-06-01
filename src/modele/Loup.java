@@ -2,8 +2,8 @@ package src.modele;
 
 public class Loup extends Acteur{
 
-	public Loup(String nom, String arme, int ptA, int ptv,int x , int y,Environnement env) {
-		super(nom, arme, ptA, ptv,x,y, env);
+	public Loup(Environnement env) {
+		super("Loup","mordre", 	4, 12,351, 250, env);
 		// TODO Auto-generated consructor stub
 	} 
 	
@@ -11,8 +11,8 @@ public class Loup extends Acteur{
 
 
 	@Override
-	public boolean attaque() {
-		return false;
+	public void attaque() {
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -25,8 +25,26 @@ public class Loup extends Acteur{
 
 	@Override
 	public void seDeplace() {
-
+	if (Math.random()<0.5) {
+	int val = -1+ (int)(Math.random() * (8));
+		this.setX(this.getX()-val);
+//		this.setY(this.getY()+val);
+	}
+	else {
+		int val2 = -1+ (int)(Math.random() * (8));
+		this.setX(this.getX()+val2);
+//		this.setY(this.getY()-val2);
 		
+	}
+
+}
+
+
+
+
+	@Override
+	public void prendreArme() {
+		// TODO Auto-generated method stub
 		
 	}
 

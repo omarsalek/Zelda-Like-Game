@@ -2,14 +2,14 @@ package src.modele;
 
 public class Archers extends Acteur{
 
-	public Archers(String nom, String arme, int ptA, int ptv,int x,int y,Environnement env) {
-		super(nom, arme, ptA, ptv,x,y, env);
-		// TODO Auto-generated constructor stub
+	public Archers(Environnement env) {
+		super("Archer","arc", 2, 12,100,310, env);
 	}
 
+
 	@Override
-	public boolean attaque() {
-		return false;
+	public void attaque() {
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -19,11 +19,27 @@ public class Archers extends Acteur{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public void seDeplace() {
-		// TODO Auto-generated method stub
+	if (Math.random()<0.5) {
+	int val = -1+ (int)(Math.random() * (8));
+		//this.setX(this.getX()-val);
+		this.setY(this.getY()+val);
+	}
+	else {
+		int val2 = -1+ (int)(Math.random() * (8));
+		//this.setX(this.getX()+val2);
+		this.setY(this.getY()-val2);
 		
 	}
 
 }
+
+
+	@Override
+	public void prendreArme() {
+		// TODO Auto-generated method stub
+		
+	}}

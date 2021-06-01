@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import src.modele.Acteur;
 import src.modele.Terrain;
 
 public class VueTerrain {
@@ -61,8 +62,9 @@ public class VueTerrain {
 		}
 	}
 	
-	public static boolean collisions(int codetuile) {
+	public static boolean collisionsTuiles(int codetuile) {
 		boolean blocage = false;
+		
 		ArrayList<Integer> ListeNonAccessibles = new ArrayList<Integer>();
 		ListeNonAccessibles.add(1);
 		ListeNonAccessibles.add(2);
@@ -76,4 +78,5 @@ public class VueTerrain {
  		return blocage;
 
 	}
+
 }
