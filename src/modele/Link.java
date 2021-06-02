@@ -19,7 +19,6 @@ public class Link extends Acteur {
 			this.setX(this.getX() + 16);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
-
 		}
 	}
 
@@ -69,18 +68,16 @@ public class Link extends Acteur {
 		if (m instanceof Epee) {
 
 			this.setPointsATT(m.getPointsAttrme());
-					this.env.getArmes().remove(m);
-                    
-				}
-			
+			this.env.getArmes().remove(m);
 
-			System.out.println("link pt apres " + this.getPointsATT());
 		}
 
+		System.out.println("link pt apres " + this.getPointsATT());
+	}
 
 	private Arme TrouverArme() {
 		for (Arme m : this.env.getArmes()) {
-			if (m instanceof Epee) {
+			if (m instanceof Epee || m instanceof Arc) {
 				if ((this.getY() - 5 <= m.getY() && m.getY() <= this.getY() + 5)
 						|| (this.getX() - 5 <= m.getX() && m.getX() <= this.getX() + 5)) {
 					return m;
@@ -104,7 +101,6 @@ public class Link extends Acteur {
 				this.decrementerPv(m.getPointsATT());
 				System.out.println("point de vie Gobelin :" + m.getPtv());
 			}
-
 			if (m instanceof Loup) {
 				System.out.println("Link attaque loup");
 				m.decrementerPv(this.getPointsATT());
@@ -116,32 +112,21 @@ public class Link extends Acteur {
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
 				System.out.println("point de vie Archer :" + m.getPtv());
+				
 			}
-
 			if (m.getPtv() == 0) {
 				System.out.println("ennemi mort");
-
 				this.env.getActeurs().remove(m);
-
-				for (Arme c : this.env.getArmes()) {// essayes de parcourir boucle --
-					if (c instanceof Arc && m instanceof Archers) {
-						this.env.getArmes().remove(c);
-						//this.env.getArmes().add(null);
-					}
-
-				}
-
+				this.env.getArmes().remove(this.TrouverArme());
 				this.env.nbMortsProperty().setValue(this.env.nbMortsProperty().getValue() + 1);
 
-			} else {
-				System.out.println("il n'ya pas d'ennemi à coté ");
 			}
 
 		}
-
-		if (this.getPtv() <= 0) {
-			JOptionPane.showMessageDialog(null, "Link mort");
-		}
+	if(this.getPtv()<=0)
+	{
+		JOptionPane.showMessageDialog(null, "Link mort");
+	}
 
 	}
 

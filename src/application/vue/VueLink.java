@@ -23,7 +23,6 @@ public class VueLink {
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());
         pane.getChildren().add(linkView);
-
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
 
     }

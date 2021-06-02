@@ -100,12 +100,13 @@ public class Controleur implements Initializable {
 			break;
 		// Ce cas "A" va gérer l'attaque de Link : lorsque l'utilisateur appuie sur a,
 		// Link attque l'ennemi et aussi le gobelin attaque au meme temps.
-		case A:
-			this.link.attaque();
-			break;
 		case B:
 			this.link.prendreArme();
 			break;
+		case A:
+			this.link.attaque();
+			break;
+		
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
 			break;

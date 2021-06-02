@@ -88,8 +88,8 @@ public class Environnement {
 			this.ajouterActeur(new Archers(this));
 			this.ajouterActeur(new Loup(this));
 			this.ajouterActeur(new Gobelin(this));
-			this.ajouterArm(new Arc(this));
 			this.ajouterArm(new Epee(this));
+			this.ajouterArm(new Arc(this));
 			//this.cameraLink=new CameraLink(0, 0);
 		
 	}

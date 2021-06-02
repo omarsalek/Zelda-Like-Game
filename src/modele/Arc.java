@@ -14,7 +14,7 @@ public class Arc extends Arme {
 		}
 //		System.out.println("fleche" + this.getX());
 //		System.out.println("link" + L.getX());
-		if (this.getX() == L.getX()) {
+		if (this.getX()/16 == L.getX()/16 && this.getY()/16 ==L.getY()/16) {
 			L.decrementerPv(this.getTirer());
 		}
 	}
