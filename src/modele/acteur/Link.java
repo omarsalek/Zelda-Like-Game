@@ -160,7 +160,7 @@ public class Link extends Acteur {
 
 	@Override
 	public void seFaitAttaquer() {
-		// this.getPtv() = this.getPTV() - ennemis.getPointsATT;
+		// this.getPtv() = this.getPTV() - ennemis.getPointsATT; 
 	}
 
 	@Override
