@@ -32,6 +32,7 @@ import src.application.vue.VueGobelin;
 import src.application.vue.VueLink;
 import src.application.vue.VueTerrain;
 import src.modele.Environnement;
+import src.modele.LectureCSV;
 import src.modele.Terrain;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
@@ -56,7 +57,7 @@ public class Controleur implements Initializable {
 	private int temps;
 	private VueGobelin GobelinVue;
 	private VueTerrain terrainVue;
-	private Terrain terrain;
+	private LectureCSV terrain;
 	private VueLink linkVue;
 	private Link link;
 	private Gobelin Gobelin;
@@ -138,7 +139,7 @@ public class Controleur implements Initializable {
 		this.env = new Environnement();
 
 		this.env.ajouter(link);
-		terrain = new Terrain();
+		terrain = new LectureCSV();
 		
 		this.terrainVue = new VueTerrain(terrain, tilepane);
 		this.terrainVue.afficherterrain();

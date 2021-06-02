@@ -6,15 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import src.modele.LectureCSV;
 import src.modele.Terrain;
 
 public class VueTerrain {
 	
-	private Terrain terrain;
+	private LectureCSV map;
 	private TilePane tilepane;
 	//Constructeur
-	public VueTerrain(Terrain terrain, TilePane tilepane) {
-		this.terrain = terrain;
+	public VueTerrain(LectureCSV map, TilePane tilepane) {
+		this.map = map;
 		this.tilepane = tilepane;
 	}
 
@@ -27,7 +28,7 @@ public class VueTerrain {
 		Image Herbe = new Image(getClass().getResourceAsStream("Herbe.png"));
 		Image Pierre = new Image(getClass().getResourceAsStream("Pierre.png"));
 
-		int[][] codesTuiles = terrain.getCarte();
+		int[][] codesTuiles = map.lireFichier();
 
 		//for qui va parcourir et remplir le tableau d'images.
 		for (int y = 0; y < codesTuiles.length; y++) {

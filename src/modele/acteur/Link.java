@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import src.application.vue.VueTerrain;
 import src.modele.Environnement;
+import src.modele.LectureCSV;
 import src.modele.Terrain;
 
 public class Link extends Acteur {
@@ -11,9 +12,9 @@ public class Link extends Acteur {
 		super("Link", "poignard", 4, 20, 415, 303, env);
 	}
 
-	public void DeplacerLinkRight(Terrain T) {
-		if (VueTerrain.collisions(T.getCarte()[this.getY() / 16][(this.getX() / 16 + 2)])) {
-			System.out.println(T.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
+	public void DeplacerLinkRight(LectureCSV T) {
+		if (VueTerrain.collisions(T.lireFichier()[this.getY() / 16][(this.getX() / 16 + 2)])) {
+			//System.out.println(T.lireFichier()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
 			this.setX(this.getX() - 16);
 		} else {
 			this.setX(this.getX() + 16);
@@ -23,10 +24,10 @@ public class Link extends Acteur {
 		}
 	}
 
-	public void DeplacerLinkLeft(Terrain T) {
+	public void DeplacerLinkLeft(LectureCSV T) {
 
-		if (VueTerrain.collisions(T.getCarte()[this.getY() / 16][(this.getX() / 16)])) {
-			System.out.println(T.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
+		if (VueTerrain.collisions(T.lireFichier()[this.getY() / 16][(this.getX() / 16)])) {
+			//System.out.println(T.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
 			this.setX(this.getX() + 16);
 		} else {
 			this.setX(this.getX() - 16);
@@ -36,9 +37,9 @@ public class Link extends Acteur {
 		}
 	}
 
-	public void DeplacerLinkUP(Terrain t) {
-		if (VueTerrain.collisions(t.getCarte()[this.getY() / 16][(this.getX() / 16)])) {
-			System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
+	public void DeplacerLinkUP(LectureCSV t) {
+		if (VueTerrain.collisions(t.lireFichier()[this.getY() / 16][(this.getX() / 16)])) {
+			//System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
 			this.setY(this.getY() + 16);
 		} else {
 			this.setY(this.getY() - 16);
@@ -48,10 +49,10 @@ public class Link extends Acteur {
 
 	}
 
-	public void DeplacerLinkDown(Terrain t) {
+	public void DeplacerLinkDown(LectureCSV t) {
 
-		if (VueTerrain.collisions(t.getCarte()[this.getY() / 16 + 1][(this.getX() / 16)])) {
-			System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le terrain
+		if (VueTerrain.collisions(t.lireFichier()[this.getY() / 16 + 1][(this.getX() / 16)])) {
+			//System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le terrain
 			this.setY(this.getY() - 16);
 		} else {
 			this.setY(this.getY() + 16);
