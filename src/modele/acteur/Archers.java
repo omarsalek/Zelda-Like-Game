@@ -1,4 +1,6 @@
-package src.modele; 
+package src.modele.acteur;
+
+import src.modele.Environnement;
 
 public class Archers extends Acteur{
 

@@ -4,9 +4,9 @@ package src.application.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import src.modele.Acteur;
 import src.modele.Environnement;
-import src.modele.Gobelin;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Gobelin;
 
 public class VueGobelin {
 

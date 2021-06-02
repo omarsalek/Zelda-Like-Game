@@ -3,9 +3,9 @@ package src.application.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import src.modele.Acteur;
 import src.modele.Environnement;
-import src.modele.Loup;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Loup;
 
 public class VueLoup {
 

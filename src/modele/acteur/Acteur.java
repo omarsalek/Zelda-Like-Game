@@ -1,10 +1,11 @@
-package src.modele;
+package src.modele.acteur;
 
 import java.util.Random; 
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 //import javafx.scene.image.Image;
+import src.modele.Environnement;
 
 public abstract class Acteur  {
 

@@ -1,11 +1,11 @@
 package src.application.vue;
 
 import javafx.scene.layout.Pane;
-import src.modele.Acteur;
-import src.modele.Archers;
 import src.modele.Environnement;
-import src.modele.Gobelin;
-import src.modele.Loup;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Archers;
+import src.modele.acteur.Gobelin;
+import src.modele.acteur.Loup;
 
 public class VueEnnemi {
 	private Pane pane;

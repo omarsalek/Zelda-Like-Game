@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import src.modele.Acteur;
 import src.modele.Terrain;
+import src.modele.acteur.Acteur;
 
 public class VueTerrain {
 	

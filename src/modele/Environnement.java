@@ -4,6 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Archers;
+import src.modele.acteur.Gobelin;
+import src.modele.acteur.Loup;
 
 public class Environnement { 
 	private CameraLink cameraLink;

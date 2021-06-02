@@ -1,5 +1,7 @@
 package src.modele;
 
+import src.modele.acteur.Link;
+
 public class Arc extends Arme {
 	public Arc(Environnement env) {
 		super("Arc", 100, 310, 4, 6, env);

@@ -1,10 +1,15 @@
-package src.modele;
+package src.modele.acteur;
 
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane; 
 
 import src.application.vue.VueTerrain;
+import src.modele.Arc;
+import src.modele.Arme;
+import src.modele.Environnement;
+import src.modele.Epee;
+import src.modele.Terrain;
 
 public class Link extends Acteur {
 

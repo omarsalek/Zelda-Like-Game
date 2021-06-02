@@ -3,7 +3,7 @@ package src.controleur;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import src.modele.Arme;
-import src.modele.Link;
+import src.modele.acteur.Link;
 
 public class MonObservateurArmes implements ListChangeListener<Arme> {
 	private Pane pane;

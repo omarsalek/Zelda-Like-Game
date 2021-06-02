@@ -4,10 +4,7 @@ import javafx.collections.ListChangeListener;
 //import javafx.scene.image.Image;
 //import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import src.modele.Acteur;
-//import src.modele.Environnement;
-//import src.modele.Gobelin;
-//import src.modele.Link;
+import src.modele.acteur.Acteur;
 
 public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	private Pane pane;

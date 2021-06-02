@@ -30,16 +30,16 @@ import src.application.vue.VueGobelin;
 import src.application.vue.VueLoup;
 import src.application.vue.VueLink;
 import src.application.vue.VueTerrain;
-import src.modele.Acteur;
 import src.modele.Arc;
-import src.modele.Archers;
 import src.modele.Arme;
 import src.modele.Environnement;
 import src.modele.Epee;
-import src.modele.Gobelin;
-import src.modele.Link;
-import src.modele.Loup;
 import src.modele.Terrain;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Archers;
+import src.modele.acteur.Gobelin;
+import src.modele.acteur.Link;
+import src.modele.acteur.Loup;
 
 public class Controleur implements Initializable {
 	@FXML
