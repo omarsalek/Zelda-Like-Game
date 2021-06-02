@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- fxml-->
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
+<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#DeplacerLink" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
    <top>
-      <Label prefHeight="32.0" prefWidth="114.0" text="Zelda King" BorderPane.alignment="CENTER">
+      <Label prefHeight="33.0" prefWidth="596.0" style="-fx-border-color: BLUE;" text="                         Zelda King" BorderPane.alignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
+         <graphic>
+            <Ellipse fx:id="Coeurs" fill="DODGERBLUE" radiusX="58.0" radiusY="14.0" stroke="BLACK" strokeType="INSIDE" />
+         </graphic>
       </Label>
    </top>
    <center>
-      <TilePane fx:id="tilepane" orientation="VERTICAL" prefHeight="303.0" prefWidth="496.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="pane" prefHeight="640.0" prefWidth="960.0">
+         <children>
+            <TilePane fx:id="tilepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" />
+         </children>
+      </Pane>
    </center>
+   <left>
+      <VBox prefHeight="640.0" prefWidth="219.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="226.0" style="-fx-border-color: black;" text="Nombre de Morts">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelNbMorts" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="34.0" prefWidth="219.0" style="-fx-border-color: red;" text="0" textFill="#ff0c0c">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </left>
 </BorderPane>

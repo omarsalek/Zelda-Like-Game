@@ -1,9 +1,11 @@
-package src.modele;
+package src.modele.acteur;
+//Cette classe va gérer les loups
+import src.modele.Environnement;
 
 public class Loup extends Acteur{
 
-	public Loup(String nom, String arme, int ptA, int ptv,int x , int y) {
-		super(nom, arme, ptA, ptv,x,y);
+	public Loup(String nom, String arme, int ptA, int ptv,int x , int y,Environnement env) {
+		super(nom, arme, ptA, ptv,x,y, env);
 		// TODO Auto-generated consructor stub
 	} 
 	
@@ -11,7 +13,8 @@ public class Loup extends Acteur{
 
 
 	@Override
-	public void attaque() {
+	public boolean attaque() {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -24,10 +27,7 @@ public class Loup extends Acteur{
 
 	@Override
 	public void seDeplace() {
-		int nposX=this.getX()+1;
-		int nposY=this.getY()+1;	
-		this.setX(nposX);
-		this.setY(nposY);
+
 		
 		
 	}
