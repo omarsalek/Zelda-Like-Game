@@ -1,6 +1,6 @@
 package src.modele;
 
-public class Gobelin extends Acteur {
+public class Gobelin extends Acteur { 
 
 	public Gobelin(Environnement env) {
 		super("Gobelin","poignard", 2, 12,615,377, env);

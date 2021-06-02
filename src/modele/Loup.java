@@ -4,7 +4,7 @@ public class Loup extends Acteur{
 
 	public Loup(Environnement env) {
 		super("Loup","mordre", 	4, 12,351, 250, env);
-		// TODO Auto-generated consructor stub
+		// TODO Auto-generated consructor stub 
 	} 
 	
 

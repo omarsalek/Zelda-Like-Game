@@ -1,7 +1,6 @@
 package src.application;
 
 
-
 import javafx.application.Application;
 //import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

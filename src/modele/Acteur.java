@@ -1,6 +1,6 @@
 package src.modele;
 
-import java.util.Random;
+import java.util.Random; 
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

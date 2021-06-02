@@ -1,6 +1,6 @@
 package src.application.vue;
 
-//Cette classe va nous permettre de gérer Link dans la vue.
+//Cette classe va nous permettre  de gérer Link dans la vue.
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

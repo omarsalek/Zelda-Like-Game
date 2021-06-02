@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Environnement {
+public class Environnement { 
 	private CameraLink cameraLink;
 	private ObservableList<Acteur> acteurs;
 	private ObservableList<Arme> armes;

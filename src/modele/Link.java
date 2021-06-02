@@ -2,7 +2,7 @@ package src.modele;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; 
 
 import src.application.vue.VueTerrain;
 

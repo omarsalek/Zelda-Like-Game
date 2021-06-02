@@ -1,12 +1,11 @@
 package src.application.vue;
-
+//Cette classe va nous permettre de gérer Link dans la vue.
 import javax.swing.JOptionPane;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import src.modele.Link;
-//Cette classe va nous permettre de gérer Link dans la vue.
+import src.modele.acteur.Link;
 
 public class VueLink {
     private Pane pane ;

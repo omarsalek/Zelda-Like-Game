@@ -22,6 +22,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 <<<<<<< HEAD
+<<<<<<< HEAD
+/bin/
+=======
+=======
+>>>>>>> develop
 
 ### Eclipse ###
 .metadata
@@ -89,6 +94,10 @@ local.properties
 ### Eclipse Patch ###
 # Spring Boot Tooling
 .sts4-cache/
+<<<<<<< HEAD
+>>>>>>> branch 'main' of https://github.com/DUT-Info-Montreuil/TDC_4_Zelda_King.git
+=======
 =======
 /bin/
 >>>>>>> refs/heads/main
+>>>>>>> develop

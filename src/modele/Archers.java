@@ -1,4 +1,4 @@
-package src.modele;
+package src.modele; 
 
 public class Archers extends Acteur{
 
