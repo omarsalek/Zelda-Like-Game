@@ -30,10 +30,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import src.application.vue.VueGobelin;
 import src.application.vue.VueLink;
-import src.application.vue.VueTerrain;
+import src.application.vue.VueMap;
 import src.modele.Environnement;
-import src.modele.LectureCSV;
-import src.modele.Terrain;
+import src.modele.Map;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
@@ -56,8 +55,8 @@ public class Controleur implements Initializable {
 	private Boolean finDuJeu = false;
 	private int temps;
 	private VueGobelin GobelinVue;
-	private VueTerrain terrainVue;
-	private LectureCSV terrain;
+	private VueMap terrainVue;
+	private Map terrain;
 	private VueLink linkVue;
 	private Link link;
 	private Gobelin Gobelin;
@@ -139,9 +138,9 @@ public class Controleur implements Initializable {
 		this.env = new Environnement();
 
 		this.env.ajouter(link);
-		terrain = new LectureCSV();
+		terrain = new Map();
 		
-		this.terrainVue = new VueTerrain(terrain, tilepane);
+		this.terrainVue = new VueMap(terrain, tilepane);
 		this.terrainVue.afficherterrain();
 		
 		this.link = new Link(env);

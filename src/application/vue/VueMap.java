@@ -6,15 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import src.modele.LectureCSV;
-import src.modele.Terrain;
+import src.modele.Map;
 
-public class VueTerrain {
+public class VueMap {
 	
-	private LectureCSV map;
+	private Map map;
 	private TilePane tilepane;
 	//Constructeur
-	public VueTerrain(LectureCSV map, TilePane tilepane) {
+	public VueMap(Map map, TilePane tilepane) {
 		this.map = map;
 		this.tilepane = tilepane;
 	}

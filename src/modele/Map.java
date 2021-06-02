@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-public class LectureCSV {
+public class Map {
 
 	private int [][] map;
 	
