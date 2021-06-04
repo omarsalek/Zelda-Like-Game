@@ -7,17 +7,13 @@ public class Arc extends Arme {
 		super("Arc", 100, 310, 4, 6, env);
 
 	}
-
-	public void TirerDepuisArc(Link L) {
-		// mouvement=mouvement+16;
+	public void TirerDepuisArc(Link m) {
 		this.setX(this.getX() + 16);
 		if (this.getX() > 500) {
 			this.setX(100);
 		}
-//		System.out.println("fleche" + this.getX());
-//		System.out.println("link" + L.getX());
-		if (this.getX()/16 == L.getX()/16 && this.getY()/16 ==L.getY()/16) {
-			L.decrementerPv(this.getTirer());
+		if (this.getX()/16 == m.getX()/16 && this.getY()/16 ==m.getY()/16) {
+			m.decrementerPv(this.getTirer());
 		}
 	}
 

@@ -2,17 +2,41 @@ package src.controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
+import src.application.vue.ActeursVue;
+import src.application.vue.ArmesVue;
+import src.modele.Arc;
 import src.modele.Arme;
+import src.modele.Environnement;
+import src.modele.Epee;
+import src.modele.acteur.Acteur;
+import src.modele.acteur.Archers;
+import src.modele.acteur.Gobelin;
 import src.modele.acteur.Link;
+import src.modele.acteur.Loup;
 
 public class MonObservateurArmes implements ListChangeListener<Arme> {
 	private Pane pane;
-//	private Link link;
+	private ArmesVue VueArme;
+	private Environnement env;
 
-	public MonObservateurArmes(Pane pane) {
+	public MonObservateurArmes(Pane pane, Environnement env) {
 		this.pane = pane;
-		//this.link = link;
+		this.VueArme = new ArmesVue(pane);
+		this.env = env;
+	}
 
+	public void AfficherArmes() {
+		for (Arme m : this.env.getArmes()) {
+			if (m instanceof Arc) {
+				this.VueArme.afficherArc(m);
+
+			}
+			if (m instanceof Epee) {
+				this.VueArme.afficherEpee(m);
+
+			}
+
+		}
 	}
 
 	private void enleverArme(Arme ArmeDisparu) {

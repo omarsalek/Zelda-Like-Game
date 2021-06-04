@@ -1,24 +1,28 @@
 package src.modele.acteur;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-import javax.swing.JOptionPane; 
-
-import src.application.vue.VueTerrain;
+import src.application.vue.VueMap;
+//import src.application.vue.VueTerrain;
 import src.modele.Arc;
 import src.modele.Arme;
 import src.modele.Environnement;
 import src.modele.Epee;
+import src.modele.Map;
+import src.modele.Map2;
 import src.modele.Terrain;
 
 public class Link extends Acteur {
-
 	public Link(Environnement env) {
 		super("Link", "poignard", 4, 50, 356, 303, env);
+
 	}
 
-	public void DeplacerLinkRight(Terrain T) {
-		if (VueTerrain.collisionsTuiles(T.getCarte()[this.getY() / 16][(this.getX() / 16 + 2)])) {
+	public void DeplacerLinkRight(Map t) {
+
+		if (VueMap.collisions(t.lireFichier()[this.getY() / 16][(this.getX() / 16 + 2)])
+				|| this.collisionEntreLinkEtEnnemis(t) == true) {
 			this.setX(this.getX() - 16);
 		} else {
 			this.setX(this.getX() + 16);
@@ -27,9 +31,10 @@ public class Link extends Acteur {
 		}
 	}
 
-	public void DeplacerLinkLeft(Terrain T) {
+	public void DeplacerLinkLeft(Map t) {
 
-		if (VueTerrain.collisionsTuiles(T.getCarte()[this.getY() / 16][(this.getX() / 16)])) {
+		if (VueMap.collisions(t.lireFichier()[this.getY() / 16 ][(this.getX() / 16 )])
+				|| this.collisionEntreLinkEtEnnemis(t) == true) {
 			this.setX(this.getX() + 16);
 
 		} else {
@@ -41,8 +46,9 @@ public class Link extends Acteur {
 
 	}
 
-	public void DeplacerLinkUP(Terrain t) {
-		if (VueTerrain.collisionsTuiles(t.getCarte()[this.getY() / 16][(this.getX() / 16)])) {
+	public void DeplacerLinkUP(Map t) {
+		if (VueMap.collisions(t.lireFichier()[this.getY() / 16][(this.getX() / 16)])
+				|| this.collisionEntreLinkEtEnnemis(t) == true) {
 			this.setY(this.getY() + 16);
 		} else {
 			this.setY(this.getY() - 16);
@@ -52,9 +58,10 @@ public class Link extends Acteur {
 
 	}
 
-	public void DeplacerLinkDown(Terrain t) {
+	public void DeplacerLinkDown(Map t) {
 
-		if (VueTerrain.collisionsTuiles(t.getCarte()[this.getY() / 16 + 1][(this.getX() / 16)])) {
+		if (VueMap.collisions(t.lireFichier()[this.getY() / 16 +1][(this.getX() / 16)])
+				|| this.collisionEntreLinkEtEnnemis(t) == true) {
 			// position dans le terrain
 			this.setY(this.getY() - 16);
 		} else {
@@ -65,34 +72,45 @@ public class Link extends Acteur {
 		}
 	}
 
-	@Override
-	public void prendreArme() {
+	public Boolean prendreArme() {
 		System.out.println("Link essayes de prendre l'arme");
-		System.out.println("link pt avant " + this.getPointsATT());
-		Arme m = this.TrouverArme();
-		if (m instanceof Epee) {
-
-			this.setPointsATT(m.getPointsAttrme());
-			this.env.getArmes().remove(m);
-
+		System.out.println("link pointsATT avant  : " + this.getPointsATT());
+		for (Arme m : this.env.getArmes()) {
+			if ((m instanceof Epee) && (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16)) {
+				this.setPointsATT(m.getPointsAttrme());
+				this.env.getArmes().remove(m);
+				this.env.getActeurs().remove(this);
+				System.out.println("link pointsATT apres : " + this.getPointsATT());
+				return true;
+			} else {
+				return false;
+			}
 		}
-
-		System.out.println("link pt apres " + this.getPointsATT());
+		return null;
 	}
 
-	private Arme TrouverArme() {
+	private Arme TrouverArc() {
 		for (Arme m : this.env.getArmes()) {
-			if (m instanceof Epee || m instanceof Arc) {
-				if ((this.getY() - 5 <= m.getY() && m.getY() <= this.getY() + 5)
-						|| (this.getX() - 5 <= m.getX() && m.getX() <= this.getX() + 5)) {
-					return m;
-				}
+			if (m instanceof Arc) {
 
+				return m;
 			}
+
 		}
 
 		return null;
 
+	}
+
+	public boolean collisionEntreLinkEtEnnemis(Map t) {
+		for (Acteur m : this.env.getActeurs()) {
+			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers) {
+				if (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -117,21 +135,28 @@ public class Link extends Acteur {
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
 				System.out.println("point de vie Archer :" + m.getPtv());
-				
+				if (m.getPtv() == 0) {
+					this.env.getArmes().remove(this.TrouverArc());
+					this.env.getArmes().add(null);
+				}
+
 			}
 			if (m.getPtv() == 0) {
 				System.out.println("ennemi mort");
 				this.env.getActeurs().remove(m);
-				this.env.getArmes().remove(this.TrouverArme());
+
+				// this.env.getArmes().remove(this.TrouverArme());
 				this.env.nbMortsProperty().setValue(this.env.nbMortsProperty().getValue() + 1);
+				if (this.env.getnbMorts() == 4) {
+					JOptionPane.showMessageDialog(null, "Félicitation vous avez gagné");
+				}
 
 			}
 
 		}
-	if(this.getPtv()<=0)
-	{
-		JOptionPane.showMessageDialog(null, "Link mort");
-	}
+		if (this.getPtv() <= 0) {
+			JOptionPane.showMessageDialog(null, "Link mort");
+		}
 
 	}
 
@@ -153,14 +178,10 @@ public class Link extends Acteur {
 
 	}
 
-	@Override
-	public void seDeplace() {
-
-	}
 
 	@Override
 	public void seFaitAttaquer() {
-		// this.getPtv() = this.getPTV() - ennemis.getPointsATT; 
+		// this.getPtv() = this.getPTV() - ennemis.getPointsATT;
 	}
 
 	@Override

@@ -1,10 +1,8 @@
 package src.modele.acteur;
 
-import java.util.Random; 
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-//import javafx.scene.image.Image;
 import src.modele.Environnement;
 
 public abstract class Acteur  {
@@ -12,6 +10,7 @@ public abstract class Acteur  {
 	private String nom;
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
+	//private String arme;
 	private String arme;
 	private int pointsATT;
 	// private int pointsVIE;
@@ -39,7 +38,8 @@ public abstract class Acteur  {
 
 	public final void setX(int x) {
 		if (this.env.estDansleTerrainX(x)) {
-			xProperty.setValue(x);
+			this.xProperty.setValue(x);
+			
 		}
 	}
 
@@ -104,18 +104,11 @@ public abstract class Acteur  {
 
 
 	public void decrementerPv(int n)  {
-//		if (this.getPtv()-n<0) {
-//			System.out.println("erreur");
-//			this.pointsVIE.setValue(this.pointsVIE.getValue()+n);
-//		}
 		this.pointsVIE.setValue(this.pointsVIE.getValue() - n);
 	}
 
 	public abstract void attaque();
-	public abstract  void prendreArme();
 	public abstract void seFaitAttaquer();
-
-	public abstract void seDeplace();
 
 	@Override
 	public String toString() {

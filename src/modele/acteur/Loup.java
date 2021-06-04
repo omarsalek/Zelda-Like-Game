@@ -25,29 +25,7 @@ public class Loup extends Acteur{
 		
 	}
 
-	@Override
-	public void seDeplace() {
-	if (Math.random()<0.5) {
-	int val = -1+ (int)(Math.random() * (8));
-		this.setX(this.getX()-val);
-//		this.setY(this.getY()+val);
-	}
-	else {
-		int val2 = -1+ (int)(Math.random() * (8));
-		this.setX(this.getX()+val2);
-//		this.setY(this.getY()-val2);
-		
-	}
-
-}
 
 
-
-
-	@Override
-	public void prendreArme() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

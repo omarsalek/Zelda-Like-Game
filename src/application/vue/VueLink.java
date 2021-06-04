@@ -9,7 +9,6 @@ import src.modele.acteur.Link;
 
 public class VueLink {
     private Pane pane ;
-
     //Constructeur
     public VueLink(Pane pane) {
         this.pane=pane;
@@ -25,4 +24,14 @@ public class VueLink {
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
 
     }
+    public void modifierLink(Link link) {
+        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecEpee.png"));
+        ImageView linkView = new ImageView(link2);
+        linkView.translateXProperty().bind(link.xProperty());
+        linkView.translateYProperty().bind(link.yProperty());
+        pane.getChildren().add(linkView);
+        linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
+    	
+    }
+    
 }
