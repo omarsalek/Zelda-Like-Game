@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import src.application.vue.VueMap;
 import src.modele.Environnement;
 import src.modele.Map;
+import src.modele.Map2;
 
 
 public class Link extends Acteur {
@@ -12,50 +13,50 @@ public class Link extends Acteur {
 		super("Link", "poignard", 4, 20, 415, 303, env);
 	}
 
-	public void DeplacerLinkRight(Map T) {
-		if (VueMap.collisions(T.lireFichier()[this.getY() / 16][(this.getX() / 16 + 2)])) {
+	public void DeplacerLinkRight(Map2 map2) {
+		if (VueMap.collisions(map2.lireFichier()[this.getY() / 16][(this.getX() / 16 + 2)])) {
 			//System.out.println(T.lireFichier()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
-			this.setX(this.getX() - 1);
+			this.setX(this.getX() - 16);
 		} else {
-			this.setX(this.getX() + 1);
+			this.setX(this.getX() + 16);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 
 		}
 	}
 
-	public void DeplacerLinkLeft(Map T) {
+	public void DeplacerLinkLeft(Map2 T) {
 
 		if (VueMap.collisions(T.lireFichier()[this.getY() / 16][(this.getX() / 16)])) {
 			//System.out.println(T.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
-			this.setX(this.getX() + 1);
+			this.setX(this.getX() + 16);
 		} else {
-			this.setX(this.getX() - 1);
+			this.setX(this.getX() - 16);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 
 		}
 	}
 
-	public void DeplacerLinkUP(Map t) {
+	public void DeplacerLinkUP(Map2 t) {
 		if (VueMap.collisions(t.lireFichier()[this.getY() / 16][(this.getX() / 16)])) {
 			//System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le tgerrain
-			this.setY(this.getY() + 1);
+			this.setY(this.getY() + 16);
 		} else {
-			this.setY(this.getY() - 1);
+			this.setY(this.getY() - 16);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 		}
 
 	}
 
-	public void DeplacerLinkDown(Map t) {
+	public void DeplacerLinkDown(Map2 t) {
 
 		if (VueMap.collisions(t.lireFichier()[this.getY() / 16 + 1][(this.getX() / 16)])) {
 			//System.out.println(t.getCarte()[getY() / 16][(getX() / 16)]); // afficher la position dans le terrain
-			this.setY(this.getY() - 1);
+			this.setY(this.getY() - 16);
 		} else {
-			this.setY(this.getY() + 1);
+			this.setY(this.getY() + 16);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 

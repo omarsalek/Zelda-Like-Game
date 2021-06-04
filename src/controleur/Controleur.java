@@ -31,8 +31,10 @@ import javafx.util.Duration;
 import src.application.vue.VueGobelin;
 import src.application.vue.VueLink;
 import src.application.vue.VueMap;
+import src.application.vue.VueMap2;
 import src.modele.Environnement;
 import src.modele.Map;
+import src.modele.Map2;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
@@ -55,8 +57,8 @@ public class Controleur implements Initializable {
 	private Boolean finDuJeu = false;
 	private int temps;
 	private VueGobelin GobelinVue;
-	private VueMap terrainVue;
-	private Map terrain;
+	private VueMap2 mapView;
+	private Map2 map2;
 	private VueLink linkVue;
 	private Link link;
 	private Gobelin Gobelin;
@@ -73,19 +75,19 @@ public class Controleur implements Initializable {
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
-			this.link.DeplacerLinkRight(this.terrain);
+			this.link.DeplacerLinkRight(this.map2);
 			break;
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
-			this.link.DeplacerLinkLeft(this.terrain);
+			this.link.DeplacerLinkLeft(this.map2);
 			break;
 		case UP:
 			System.out.println("Link se deplace en haut ");
-			this.link.DeplacerLinkUP(this.terrain);
+			this.link.DeplacerLinkUP(this.map2);
 			break;
 		case DOWN:
 			System.out.println("Link se deplace en bas ");
-			this.link.DeplacerLinkDown(this.terrain);
+			this.link.DeplacerLinkDown(this.map2);
 			break;
 			//Ce cas "A" va gérer l'attaque de Link : lorsque l'utilisateur appuie sur a, Link attque l'ennemi.
 		case A:
@@ -138,10 +140,10 @@ public class Controleur implements Initializable {
 		this.env = new Environnement();
 
 		this.env.ajouter(link);
-		terrain = new Map();
+		map2 = new Map2();
 		
-		this.terrainVue = new VueMap(terrain, tilepane);
-		this.terrainVue.afficherterrain();
+		this.mapView = new VueMap2(map2, tilepane);
+		this.mapView.afficherterrain();
 		
 		this.link = new Link(env);
 		this.linkVue = new VueLink(pane);
