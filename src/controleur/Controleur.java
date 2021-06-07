@@ -19,9 +19,11 @@ import javafx.util.Duration;
 import src.application.vue.VueLink;
 import src.application.vue.VueMap;
 import src.application.vue.VueMap2;
+import src.application.vue.VueMap3;
 import src.modele.Environnement;
 import src.modele.Map;
 import src.modele.Map2;
+import src.modele.Map3;
 import src.modele.acteur.Link;
 
 public class Controleur implements Initializable {
@@ -42,6 +44,8 @@ public class Controleur implements Initializable {
 	private Map map;
 //	private VueMap2 mapVue;
 //	private Map2 map;
+//	private Map3 map;
+//	private VueMap3 mapVue;
 	private VueLink linkVue;
 	private Link link;
 	
@@ -58,7 +62,7 @@ public class Controleur implements Initializable {
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
-			this.link.DeplacerLinkRight(this.map );
+			this.link.DeplacerLinkRight(this.map);
 			break;
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
@@ -128,8 +132,10 @@ public class Controleur implements Initializable {
 		this.linkVue.creerLink(link);
 //		map = new Map2();
 //		this.mapVue = new VueMap2(map, tilepane);
+//		map = new Map3();
+//		this.mapVue = new VueMap3(map, tilepane);
 		map = new Map();
-		this.mapVue = new VueMap(map, tilepane);
+		this.mapVue = new VueMap(map,tilepane);
 		this.mapVue.afficherterrain();
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane,env));

@@ -11,6 +11,7 @@ import src.modele.Environnement;
 import src.modele.Epee;
 import src.modele.Map;
 import src.modele.Map2;
+import src.modele.Map3;
 
 public class Link extends Acteur {
 	public Link(Environnement env) {
