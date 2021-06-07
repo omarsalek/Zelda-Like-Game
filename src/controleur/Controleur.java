@@ -75,12 +75,12 @@ public class Controleur implements Initializable {
 			this.link.DeplacerLinkDown(this.map);
 
 			break;
-		case B:
+		case P:
 			if (this.link.prendreArme()){
 			this.linkVue.modifierLink(link);
 			}
 			else {
-				System.out.println("Pas d'arme d'arme a coté");
+				System.out.println("Pas d'arme d'arme a cot�");
 			}
 			break;
 		case A:// Ce cas "A" va gérer l'attaque de Link : lorsque l'utilisateur appuie sur a,
