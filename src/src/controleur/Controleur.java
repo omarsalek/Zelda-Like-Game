@@ -17,13 +17,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
 import src.application.vue.VueLink;
-import src.application.vue.VueMap;
+import src.application.vue.VueTerrain;
 import src.application.vue.VueMap2;
 import src.modele.Dragon;
 import src.modele.Environnement;
-import src.modele.Map;
+import src.modele.Terrain;
 import src.modele.Map2;
 import src.modele.Pistolet;
+import src.modele.acteur.Acteur;
 import src.modele.acteur.Link;
 
 public class Controleur implements Initializable {
@@ -39,13 +40,13 @@ public class Controleur implements Initializable {
 	private Label labelNbMorts;
 	 @FXML
 	    private Label nbpieceOr;
-	
+
 	
 	private Timeline gameLoop;
 	private Boolean finDuJeu = false;
 	private int temps;
-	private VueMap2 mapVue;
-	private Map2 map;
+	private VueTerrain mapVue;
+	private Terrain map;
 //	private VueMap2 mapVue;
 //	private Map2 map;
 	private VueLink linkVue;
@@ -54,6 +55,8 @@ public class Controleur implements Initializable {
 	private Environnement env;
 	private Dragon drag ;
 	private Pistolet pistolet ;
+	private Acteur a ;
+	private Terrain t ;
 
 	// Cette méthode va nous permettre de faire déplacer Link.
 	@FXML
@@ -66,21 +69,22 @@ public class Controleur implements Initializable {
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
-			this.link.DeplacerLinkRight(this.map );
+			this.link.DeplacerRight();
 			break;
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
-			this.link.DeplacerLinkLeft(this.map);
+			this.link.DeplacerLeft();
 
 			break;
 		case UP:
 			System.out.println("Link se deplace en haut ");
-			this.link.DeplacerLinkUP(this.map);
+			this.link.DeplacerUP();
 
 			break;
 		case DOWN:
 			System.out.println("Link se deplace en bas ");
-			this.link.DeplacerLinkDown(this.map);
+			this.link.DeplacerDown();
+			
 
 			break;
 		case P:
@@ -144,16 +148,22 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		map = new Terrain();
 		Coeurs.setFill(Color.RED);
-		this.env  = new Environnement(960, 639);
+		this.env  = new Environnement(960, 639,map);
 		this.link = new Link(env);
 		this.env.ajouterActeur(link);
 		this.linkVue = new VueLink(pane);
 		this.linkVue.creerLink(link);
+		
 //		map = new Map2();
 //		this.mapVue = new VueMap2(map, tilepane);
-		map = new Map2();
-		this.mapVue = new VueMap2(map, tilepane);
+		this.link.setNom_map("map.csv");
+		System.out.println(this.link.getNom_map());
+		
+//		map = new Terrain();
+		this.mapVue = new VueTerrain(map, tilepane);
+	
 		this.mapVue.afficherterrain();
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane,env));

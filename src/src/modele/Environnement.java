@@ -13,18 +13,30 @@ import src.modele.acteur.Loup;
 public class Environnement {
 	private ObservableList<Acteur> acteurs;
 	private ObservableList<Arme> armes;
+	private ObservableList<Terrain> maps;
 	private int height;
 	private int width;
 	private IntegerProperty nbMortsProperty;
 	private IntegerProperty piecedor ;
+	private Terrain map ;
 
-	public Environnement(int width, int height) {
+	public Environnement(int width, int height,Terrain map) {
 		this.acteurs = FXCollections.observableArrayList();
 		this.armes = FXCollections.observableArrayList();
+		this.maps=FXCollections.observableArrayList();
 		this.nbMortsProperty = new SimpleIntegerProperty(0);
 		this.piecedor=new SimpleIntegerProperty(0);
 		this.height = height;
 		this.width = width;
+		this.map=map ;
+	}
+
+	public Terrain getMap() {
+		return map;
+	}
+
+	public void setMap(Terrain map) {
+		this.map = map;
 	}
 
 	public final int getnbMorts() {
@@ -58,6 +70,13 @@ public class Environnement {
 	public ObservableList<Acteur> getActeurs() {
 		return acteurs;
 	}
+	public ObservableList<Terrain> getterrains() {
+		return this.maps;
+	}
+	public void ajouterTerrain(Terrain t) {
+		maps.add(t);
+	}
+	
 
 	public ObservableList<Arme> getArmes() {
 		return armes;
@@ -179,6 +198,7 @@ public class Environnement {
 		this.ajouterArm(new Arc(this));
 		this.ajouterArm(new Feu(this));
 		this.ajouterArm(new Money(this));
+		this.ajouterTerrain(new Terrain());
 		
 	}
 }
