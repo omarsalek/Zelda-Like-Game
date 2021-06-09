@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- fxml-->
+
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -28,7 +30,7 @@
    </center>
    <left>
       <VBox prefHeight="640.0" prefWidth="219.0" BorderPane.alignment="CENTER">
-         <children>
+			<children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="226.0" style="-fx-border-color: black;" text="Nombre de Morts">
                <font>
                   <Font size="22.0" />
@@ -37,6 +39,21 @@
             <Label fx:id="labelNbMorts" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="34.0" prefWidth="219.0" style="-fx-border-color: red;" text="0" textFill="#ff0c0c">
                <font>
                   <Font size="22.0" />
+               </font>
+            </Label>
+                  <Label prefHeight="45.0" prefWidth="227.0" style="-fx-border-color: black;" text="Nbre de piece d'or">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nbpieceOr" prefHeight="39.0" prefWidth="219.0" style="-fx-border-color: red;" text="                0" textFill="#eb5b26">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+            <Label fx:id="labelDiscussion" prefHeight="79.0" prefWidth="220.0" style="-fx-border-color: BLUE;" text="Discussion Entre Link et Vendeur" textFill="#0011ff">
+               <font>
+                  <Font size="13.0" />
                </font>
             </Label>
          </children></VBox>

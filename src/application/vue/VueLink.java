@@ -33,5 +33,14 @@ public class VueLink {
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
     	
     }
+    public void modifierLinkarme(Link link) {
+        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecPistolet.png"));
+        ImageView linkView = new ImageView(link2);
+        linkView.translateXProperty().bind(link.xProperty());
+        linkView.translateYProperty().bind(link.yProperty());
+        pane.getChildren().add(linkView);
+        linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
+    	
+    }
     
 }

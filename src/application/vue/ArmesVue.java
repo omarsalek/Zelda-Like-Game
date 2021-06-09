@@ -28,6 +28,18 @@ public class ArmesVue {
 		pane.getChildren().add(ArcVue);
 
 	}
+//	public void afficherArgent(Arme argent) {
+//        Image Argent = new Image(getClass().getResourceAsStream("pieceArgent.png"));
+//        ImageView ArgentVue = new ImageView(Argent);
+//        //On lui donne un id
+//        ArgentVue.setId(argent.getId());
+//        ArgentVue.translateXProperty().bind(argent.getxProperty());
+//        ArgentVue.translateYProperty().bind(argent.getyProperty());
+//        //Quand on click sur l'arc la console affiche ses informations.
+//        ArgentVue.setOnMouseClicked(e -> System.out.println("" + argent.getId() + " c'est argent !"));
+//        pane.getChildren().add(ArgentVue);
+//
+//    }
 
 	public void afficherEpee(Arme epee) {
 		Image Epee = new Image(getClass().getResourceAsStream("epee.png"));
@@ -39,6 +51,18 @@ public class ArmesVue {
 		// Quand on click sur l'epee la console affiche ses informations.
 		EpeeVue.setOnMouseClicked(e -> System.out.println("Attention " + epee.getId() + " est un epee !"));
 		pane.getChildren().add(EpeeVue);
+
+	}
+	public void afficherpistolet(Arme a) {
+		Image pisto = new Image(getClass().getResourceAsStream("pistolet.PNG"));
+		ImageView pistoVue = new ImageView(pisto);
+		//On lui donne un id
+		pistoVue.setId(a.getId());
+		pistoVue.translateXProperty().bind(a.getxProperty());
+		pistoVue.translateYProperty().bind(a.getyProperty());
+		//Quand on click sur l'arc la console affiche ses informations.
+		pistoVue.setOnMouseClicked(e -> System.out.println("Attention " + a.getId() + " est un pistolet!"));
+		pane.getChildren().add(pistoVue);
 
 	}
 }

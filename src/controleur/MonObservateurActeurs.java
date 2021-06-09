@@ -10,6 +10,7 @@ import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
+import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
 
 public class MonObservateurActeurs implements ListChangeListener<Acteur> {
@@ -29,6 +30,7 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 		this.pane.getChildren().remove(this.pane.lookup("#" + mort.getId()));
 
 	}
+
 
 	public void AfficherActeurs() {
 		for (Acteur m : this.env.getActeurs()) {
@@ -52,9 +54,11 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	public void onChanged(javafx.collections.ListChangeListener.Change<? extends Acteur> c) {
 		while (c.next()) {
 			for (Acteur mort : c.getRemoved()) {
-				enleverEnnemi(mort);
-
+			    	enleverEnnemi(mort);
+			    	
 			}
+		
+			
 
 		}
 

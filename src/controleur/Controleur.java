@@ -1,5 +1,5 @@
 package src.controleur;
-//Sprint 3
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -16,15 +17,17 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
+import src.application.vue.ShopVue;
 import src.application.vue.VueLink;
-import src.application.vue.VueMap;
-import src.application.vue.VueMap2;
-import src.application.vue.VueMap3;
+import src.application.vue.VueTerrain;
+import src.application.vue.VueVendeur;
+import src.modele.acteur.Dragon;
 import src.modele.Environnement;
-import src.modele.Map;
-import src.modele.Map2;
-import src.modele.Map3;
+import src.modele.Terrain;
+import src.modele.Pistolet;
+import src.modele.acteur.Acteur;
 import src.modele.acteur.Link;
+import src.modele.acteur.Vendeur;
 
 public class Controleur implements Initializable {
 	@FXML
@@ -37,20 +40,26 @@ public class Controleur implements Initializable {
 	private Button CommencerJeu;
 	@FXML
 	private Label labelNbMorts;
+	@FXML
+	private Label nbpieceOr;
+	@FXML
+    private Label labelDiscussion;
+
+	
 	private Timeline gameLoop;
 	private Boolean finDuJeu = false;
 	private int temps;
-	private VueMap mapVue;
-	private Map map;
-//	private VueMap2 mapVue;
-//	private Map2 map;
-//	private Map3 map;
-//	private VueMap3 mapVue;
+	private VueVendeur vendeurVue;
+	private VueTerrain mapVue;
+	private Terrain map;
 	private VueLink linkVue;
 	private Link link;
 	
 	private Environnement env;
-
+//	private Dragon drag ;
+//	private Pistolet pistolet ;
+	private Vendeur vendeur;
+	private ShopVue VueShop;
 	// Cette m√©thode va nous permettre de faire d√©placer Link.
 	@FXML
 	void DeplacerLink(KeyEvent e) {
@@ -62,21 +71,29 @@ public class Controleur implements Initializable {
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
-			this.link.DeplacerLinkRight(this.map);
+			this.link.DeplacerRight();
 			break;
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
-			this.link.DeplacerLinkLeft(this.map);
+			this.link.DeplacerLeft();
 
 			break;
 		case UP:
-			System.out.println("Link se deplace en haut ");
-			this.link.DeplacerLinkUP(this.map);
+			System.out.println("Link se deplace en haut ");//
+			this.link.DeplacerUP();
 
 			break;
 		case DOWN:
 			System.out.println("Link se deplace en bas ");
-			this.link.DeplacerLinkDown(this.map);
+			this.link.DeplacerDown();
+			if (this.link.isChargerLaDeuxiemeMap() == false) {
+				this.link.DeplacerDown();
+			}
+			else {
+				changermap2();
+				this.link.DeplacerDown();
+				this.env.discussionProperty().setValue("Acheter un pistolet a 1 euro !! ");
+			}
 
 			break;
 		case P:
@@ -84,18 +101,50 @@ public class Controleur implements Initializable {
 			this.linkVue.modifierLink(link);
 			}
 			else {
-				System.out.println("Pas d'arme d'arme a cotÈ");
+				System.out.println("Pas d'arme d'arme ‡ proximitÈ");
 			}
 			break;
 		case A:// Ce cas "A" va g√©rer l'attaque de Link : lorsque l'utilisateur appuie sur a,
 			// Link attque l'ennemi et aussi le gobelin attaque au meme temps.
 			this.link.attaque();
 			break;
+		case T:
+			if (this.link.prendrepistolet()){
+			this.linkVue.modifierLinkarme(link);
 		
+			}
+			else {
+				System.out.println("Pas d'arme d'arme ‡ proximitÈ");
+			}
+			break;
+		case C:
+			if (this.link.isChargerLaDeuxiemeMap() == true) {
+				if (this.link.acheterPistolet()==true) {
+					this.linkVue.modifierLink(link);
+
+				}
+			}
+			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
 			break;
 		}
+	}
+	public void changermap2() {
+		for (int i = this.tilepane.getChildren().size() - 1; i >= 0; i--) {
+			Node c = this.tilepane.getChildren().get(i);
+			this.tilepane.getChildren().remove(c);
+		}
+		map = new Terrain();
+		this.link.setNom_map("map2.csv");
+		this.mapVue = new VueTerrain(map, tilepane);
+		this.mapVue.afficherterrain2();
+		this.VueShop = new  ShopVue(pane);
+		this.VueShop.afficherShop();
+		this.vendeur = new Vendeur(env);
+		this.env.ajouterActeur(vendeur);
+		this.vendeurVue = new VueVendeur(pane);
+		this.vendeurVue.creerVendeur(vendeur);
 	}
 
 	// Cette m√©thode est la boucle de notre jeu (timer pour l'instant).
@@ -108,12 +157,25 @@ public class Controleur implements Initializable {
 			if (temps == 20000) {
 				finDuJeu = true;
 				gameLoop.stop();
-				JOptionPane.showMessageDialog(null, "Jeu arret√© ,Au revoir !");
+				JOptionPane.showMessageDialog(null, "Jeu arretÈ , au revoir !");
 			}else {
 	            this.env.SeDeplacerTousLesActeurs();				
 				if (this.env.ArcherEstMort()==false) {
+					
 					this.env.arc().TirerDepuisArc(link);
+				
+				}
+				 if(this.env.DragonEstMort()==false) {
+					this.env.drag().TirerDepuisdragon(link) ;
+//					this.env.pistolet().TirerDepuispistolet(link);
+				}
+				 if (this.env.SeDeplacerTousLesActeurs()==false) {
+						this.link.CollisionEnnemieLeft();
 					}
+					else {
+					this.link.CollisionEnnemieRight();
+					}
+					
 				
 				}
 			temps++;
@@ -124,28 +186,29 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		map = new Terrain();
 		Coeurs.setFill(Color.RED);
-		this.env  = new Environnement(960, 639);
+		this.env  = new Environnement(960, 639, map);
 		this.link = new Link(env);
 		this.env.ajouterActeur(link);
 		this.linkVue = new VueLink(pane);
 		this.linkVue.creerLink(link);
-//		map = new Map2();
-//		this.mapVue = new VueMap2(map, tilepane);
-//		map = new Map3();
-//		this.mapVue = new VueMap3(map, tilepane);
-		map = new Map();
-		this.mapVue = new VueMap(map,tilepane);
+		this.link.setNom_map("map.csv");
+		System.out.println(this.link.getNom_map());
+		this.mapVue = new VueTerrain(map, tilepane);
 		this.mapVue.afficherterrain();
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane,env));
 		this.env.getActeurs().addListener(new MonObservateurActeurs(this.pane,env));
+		
 		Coeurs.radiusXProperty().bind(this.link.pointsVIE().multiply(1));
 		MonObservateurActeurs ActeursVues = new MonObservateurActeurs(pane,env);
 		MonObservateurArmes ArmesVues = new MonObservateurArmes(pane,env);
 		ActeursVues.AfficherActeurs();
 		ArmesVues.AfficherArmes();
 		this.env.nbMortsProperty().addListener((obse, old, nouv) -> this.labelNbMorts.setText(nouv.toString()));
+		this.env.nbpieceProperty().addListener((obse, old, nouv) -> this.nbpieceOr.setText(nouv.toString()));
+		this.env.discussionProperty().addListener((obse, old, nouv) -> this.labelDiscussion.setText(nouv.toString()));
 		// d√©marre l'animation
 		initAnimation();
 		gameLoop.play();

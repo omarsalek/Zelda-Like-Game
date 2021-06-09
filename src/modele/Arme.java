@@ -24,6 +24,7 @@ public abstract class Arme {
 		this.id = "A" + compteur;
 		compteur++;
 	}
+	
 
 	public String getId() {
 		return id;
