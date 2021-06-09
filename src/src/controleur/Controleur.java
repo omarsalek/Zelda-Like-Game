@@ -19,9 +19,11 @@ import javafx.util.Duration;
 import src.application.vue.VueLink;
 import src.application.vue.VueMap;
 import src.application.vue.VueMap2;
+import src.modele.Dragon;
 import src.modele.Environnement;
 import src.modele.Map;
 import src.modele.Map2;
+import src.modele.Pistolet;
 import src.modele.acteur.Link;
 
 public class Controleur implements Initializable {
@@ -35,17 +37,23 @@ public class Controleur implements Initializable {
 	private Button CommencerJeu;
 	@FXML
 	private Label labelNbMorts;
+	 @FXML
+	    private Label nbpieceOr;
+	
+	
 	private Timeline gameLoop;
 	private Boolean finDuJeu = false;
 	private int temps;
-	private VueMap mapVue;
-	private Map map;
+	private VueMap2 mapVue;
+	private Map2 map;
 //	private VueMap2 mapVue;
 //	private Map2 map;
 	private VueLink linkVue;
 	private Link link;
 	
 	private Environnement env;
+	private Dragon drag ;
+	private Pistolet pistolet ;
 
 	// Cette méthode va nous permettre de faire déplacer Link.
 	@FXML
@@ -78,16 +86,25 @@ public class Controleur implements Initializable {
 		case P:
 			if (this.link.prendreArme()){
 			this.linkVue.modifierLink(link);
+//			break ;
 			}
 			else {
-				System.out.println("Pas d'arme d'arme a cot�");
+				System.out.println("Pas d'arme d'arme a cot�");
 			}
 			break;
 		case A:// Ce cas "A" va gérer l'attaque de Link : lorsque l'utilisateur appuie sur a,
 			// Link attque l'ennemi et aussi le gobelin attaque au meme temps.
 			this.link.attaque();
 			break;
+		case T:
+			if (this.link.prendrepistolet()){
+			this.linkVue.modifierLinkarme(link);
 		
+			}
+			else {
+				System.out.println("Pas d'arme d'arme a cot�");
+			}
+			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
 			break;
@@ -108,8 +125,15 @@ public class Controleur implements Initializable {
 			}else {
 	            this.env.SeDeplacerTousLesActeurs();				
 				if (this.env.ArcherEstMort()==false) {
+					
 					this.env.arc().TirerDepuisArc(link);
-					}
+				
+				}
+				 if(this.env.DragonEstMort()==false) {
+					this.env.drag().TirerDepuisdragon(link) ;
+//					this.env.pistolet().TirerDepuispistolet(link);
+				}
+					
 				
 				}
 			temps++;
@@ -128,18 +152,20 @@ public class Controleur implements Initializable {
 		this.linkVue.creerLink(link);
 //		map = new Map2();
 //		this.mapVue = new VueMap2(map, tilepane);
-		map = new Map();
-		this.mapVue = new VueMap(map, tilepane);
+		map = new Map2();
+		this.mapVue = new VueMap2(map, tilepane);
 		this.mapVue.afficherterrain();
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane,env));
 		this.env.getActeurs().addListener(new MonObservateurActeurs(this.pane,env));
+		
 		Coeurs.radiusXProperty().bind(this.link.pointsVIE().multiply(1));
 		MonObservateurActeurs ActeursVues = new MonObservateurActeurs(pane,env);
 		MonObservateurArmes ArmesVues = new MonObservateurArmes(pane,env);
 		ActeursVues.AfficherActeurs();
 		ArmesVues.AfficherArmes();
 		this.env.nbMortsProperty().addListener((obse, old, nouv) -> this.labelNbMorts.setText(nouv.toString()));
+		this.env.nbpieceProperty().addListener((obse, old, nouv) -> this.nbpieceOr.setText(nouv.toString()));
 		// démarre l'animation
 		initAnimation();
 		gameLoop.play();

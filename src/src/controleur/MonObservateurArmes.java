@@ -6,8 +6,12 @@ import src.application.vue.ActeursVue;
 import src.application.vue.ArmesVue;
 import src.modele.Arc;
 import src.modele.Arme;
+import src.modele.Dragon;
 import src.modele.Environnement;
 import src.modele.Epee;
+import src.modele.Feu;
+import src.modele.Money;
+import src.modele.Pistolet;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
@@ -35,8 +39,16 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 				this.VueArme.afficherEpee(m);
 
 			}
-
+			if (m instanceof Feu) {
+				this.VueArme.afficherfeu(m);
 		}
+			if (m instanceof Pistolet) {
+				this.VueArme.afficherpistolet(m);
+			}
+			if (m instanceof Money) {
+				this.VueArme.afficherArgent(m);
+			}
+	}
 	}
 
 	private void enleverArme(Arme ArmeDisparu) {

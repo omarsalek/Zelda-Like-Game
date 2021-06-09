@@ -1,5 +1,5 @@
 package src.application.vue;
-//Cette classe va nous permettre de gérer Link dans la vue.
+//Cette classe va nous permettre de gï¿½rer Link dans la vue.
 import javax.swing.JOptionPane;
 
 import javafx.scene.image.Image;
@@ -14,9 +14,9 @@ public class VueLink {
         this.pane=pane;
     }
 
-    //Cette méthode va créer Link dans la vue.
+    //Cette mï¿½thode va crï¿½er Link dans la vue.
     public void creerLink(Link link) {
-        Image link1 = new Image(getClass().getResourceAsStream("hero.png"));
+        Image link1 = new Image(getClass().getResourceAsStream("Hero.png"));
         ImageView linkView = new ImageView(link1);
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());
@@ -33,5 +33,21 @@ public class VueLink {
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
     	
     }
+    public void modifierLinkarme(Link link) {
+        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecPistolet.png"));
+        ImageView linkView = new ImageView(link2);
+        linkView.translateXProperty().bind(link.xProperty());
+        linkView.translateYProperty().bind(link.yProperty());
+        pane.getChildren().add(linkView);
+        linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
+    	
+    }
+    
+
     
 }
+
+
+
+
+

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public class Map {
+	// LE METTRE DANS LE TERRAIN(MAP) ET LES DEUX CLASSES MAP DOIVENT DISPARAÎTRE
 
 	private int [][] map;
 	

@@ -5,10 +5,11 @@ import javax.swing.JOptionPane;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import src.application.vue.ActeursVue;
+import src.modele.Dragon;
 import src.modele.Environnement;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
-import src.modele.acteur.Dragon;
+import src.modele.acteur.DragoN;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Loup;
 
@@ -31,6 +32,7 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	}
 
 	public void AfficherActeurs() {
+		
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Loup) {
 				this.VueActeur.afficherLoup(m);
@@ -42,9 +44,12 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 			if (m instanceof Archers) {
 				this.VueActeur.afficherArcher(m);
 			}
-//			if (m instanceof Dragon) {
-//				this.VueActeur.afficherDragon(m);
-//			}
+//			
+//			
+			if (m instanceof DragoN) {
+				this.VueActeur.afficherDragon(m);
+			}
+			
 		}
 	}
 

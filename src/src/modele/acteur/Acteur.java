@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import src.modele.Environnement;
 
 public abstract class Acteur  {
-
+// ajouter collision  ici 
 	private String nom;
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
@@ -66,6 +66,10 @@ public abstract class Acteur  {
 	}
 
 	public int getPtv() {
+		return pointsVIE.getValue();
+	}
+
+	public final int getTirer() {
 		return pointsVIE.getValue();
 	}
 

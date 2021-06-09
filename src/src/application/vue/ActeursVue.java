@@ -1,10 +1,12 @@
 package src.application.vue;
 
 import javafx.scene.image.Image;
+
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import src.modele.acteur.Acteur;
-import src.modele.acteur.Dragon;
+
 
 public class ActeursVue {
   private Pane pane;
@@ -56,7 +58,7 @@ public class ActeursVue {
               }
  
     	  public void afficherDragon(Acteur m) {
-    	            Image dragon1 = new Image(getClass().getResourceAsStream("DragoN.png"));
+    	            Image dragon1 = new Image(getClass().getResourceAsStream("DragoN.gif"));
     	            ImageView dragonvue = new ImageView(dragon1);
     	            //On lui donne un id
     	            dragonvue.setId(m.getId());

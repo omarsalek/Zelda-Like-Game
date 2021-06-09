@@ -15,9 +15,9 @@ public class VueMap2 {
 		this.tilepane = tilepane;
 	}
 
-	//Cette méthode va gérer l'affichage entier de notre terrain.S
+	//Cette mï¿½thode va gï¿½rer l'affichage entier de notre terrain.S
 	public void afficherterrain() {
-		//On commence par créer les Image.
+		//On commence par crï¿½er les Image.
 		Image Arbre = new Image(getClass().getResourceAsStream("Arbre.png"));
 		Image Arbre2 = new Image(getClass().getResourceAsStream("Arbre2.png"));
 		Image Eau = new Image(getClass().getResourceAsStream("Eau.png"));
@@ -43,7 +43,7 @@ public class VueMap2 {
 				ImageView panneauView = new ImageView(panneau);
 				ImageView feuView = new ImageView(feu);
 				ImageView bateauView = new ImageView(bateau);
-				//Switch case qui va faire la correspondace entre la tuile et l'image octroyé à chacun des numéros de la tuile.
+				//Switch case qui va faire la correspondace entre la tuile et l'image octroyï¿½ ï¿½ chacun des numï¿½ros de la tuile.
 				switch (codesTuiles[y][x]) {
 				case 1:
 					tilepane.getChildren().add(PierreView);
