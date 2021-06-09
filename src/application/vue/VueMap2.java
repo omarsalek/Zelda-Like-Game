@@ -19,7 +19,7 @@ public class VueMap2 {
 	public void afficherterrain() {
 		//On commence par créer les Image.
 		Image Arbre = new Image(getClass().getResourceAsStream("Arbre.png"));
-		Image Arbre2 = new Image(getClass().getResourceAsStream("Arbre2.png"));
+		Image sol = new Image(getClass().getResourceAsStream("sol.png"));
 		Image Eau = new Image(getClass().getResourceAsStream("Eau.png"));
 		Image Herbe = new Image(getClass().getResourceAsStream("Herbe.png"));
 		Image Pierre = new Image(getClass().getResourceAsStream("Pierre.png"));
@@ -35,7 +35,7 @@ public class VueMap2 {
 			for (int x = 0; x < codesTuiles[y].length; x++) {
 				
 				ImageView ArbreView = new ImageView(Arbre);
-				ImageView Arbre2View = new ImageView(Arbre2);
+				ImageView solView = new ImageView(sol);
 				ImageView EauView = new ImageView(Eau);
 				ImageView HerbeView = new ImageView(Herbe);
 				ImageView PierreView = new ImageView(Pierre);
@@ -54,8 +54,8 @@ public class VueMap2 {
 				case 4:
 					tilepane.getChildren().add(EauView);
 					break;
-				case 3:
-					tilepane.getChildren().add(Arbre2View);
+				case 9:
+					tilepane.getChildren().add(solView);
 					break;
 				case 2:
 					tilepane.getChildren().add(ArbreView);
@@ -83,7 +83,6 @@ public class VueMap2 {
 		ArrayList<Integer> ListeNonAccessibles = new ArrayList<Integer>();
 		ListeNonAccessibles.add(1);
 		ListeNonAccessibles.add(2);
-		ListeNonAccessibles.add(3);
 		ListeNonAccessibles.add(4);
 		ListeNonAccessibles.add(7);
 		ListeNonAccessibles.add(5);
