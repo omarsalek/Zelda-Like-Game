@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import src.application.vue.ActeursVue;
+import src.application.vue.VueActeurs;
 import src.application.vue.VueTerrain;
 import src.modele.Environnement;
 import src.modele.Terrain;
@@ -14,15 +14,15 @@ import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Loup;
 
-public class MonobservateurVueMap implements ListChangeListener<Acteur>  {
+public class MonobservateurMap implements ListChangeListener<Acteur>  {
 	private Pane pane;
-	private ActeursVue VueActeur;
+	private VueActeurs VueActeur;
 	private Environnement env;
 	private VueTerrain t ;
 
-	public  MonobservateurVueMap(Pane pane, Environnement env) {
+	public  MonobservateurMap(Pane pane, Environnement env) {
 		this.pane = pane;
-		this.VueActeur = new ActeursVue(pane);
+		this.VueActeur = new VueActeurs(pane);
 		this.env = env;
 
 	}

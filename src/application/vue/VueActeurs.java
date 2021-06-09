@@ -6,10 +6,10 @@ import javafx.scene.layout.Pane;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Dragon;
 
-public class ActeursVue {
+public class VueActeurs {
   private Pane pane;
   //Constructeur
-  public ActeursVue(Pane pane) {
+  public VueActeurs(Pane pane) {
       this.pane = pane;
   }
 

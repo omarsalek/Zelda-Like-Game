@@ -3,15 +3,15 @@ package src.application.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import src.modele.Arme;
+import src.modele.armes.Arme;
 
 
-public class ArmesVue {
+public class VueArmes {
 
 	private Pane pane;
 	
 	// Constructeur
-	public ArmesVue(Pane pane) {
+	public VueArmes(Pane pane) {
 		this.pane = pane;
 
 	}

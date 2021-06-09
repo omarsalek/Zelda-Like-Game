@@ -2,26 +2,26 @@ package src.controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import src.application.vue.ActeursVue;
-import src.application.vue.ArmesVue;
-import src.modele.Arc;
-import src.modele.Arme;
+import src.application.vue.VueActeurs;
+import src.application.vue.VueArmes;
 import src.modele.Environnement;
-import src.modele.Epee;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
+import src.modele.armes.Arc;
+import src.modele.armes.Arme;
+import src.modele.armes.Epee;
 
 public class MonObservateurArmes implements ListChangeListener<Arme> {
 	private Pane pane;
-	private ArmesVue VueArme;
+	private VueArmes VueArme;
 	private Environnement env;
 
 	public MonObservateurArmes(Pane pane, Environnement env) {
 		this.pane = pane;
-		this.VueArme = new ArmesVue(pane);
+		this.VueArme = new VueArmes(pane);
 		this.env = env;
 	}
 
@@ -33,16 +33,12 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 			}
 			if (m instanceof Epee) {
 				this.VueArme.afficherEpee(m);
-
 			}
-
 		}
 	}
 
 	private void enleverArme(Arme ArmeDisparu) {
-		// System.out.println("enlever l'arm de l'ennemi mort");
 		this.pane.getChildren().remove(this.pane.lookup("#" + ArmeDisparu.getId()));
-
 	}
 
 	@Override
@@ -50,7 +46,6 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 		while (c.next()) {
 			for (Arme ArmeDisparu : c.getRemoved()) {
 				enleverArme(ArmeDisparu);
-
 			}
 
 		}

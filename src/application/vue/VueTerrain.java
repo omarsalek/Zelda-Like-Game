@@ -1,13 +1,7 @@
 package src.application.vue;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -124,15 +118,16 @@ public class VueTerrain {
 				case 3:
 					tilepane.getChildren().add(Arbre2View);
 					break;
-				case 4:
+				case 9:
 					tilepane.getChildren().add(solView);
 					break;
-				case 5:
+				case 10:
 					tilepane.getChildren().add(laveView);
 					break;
-				case 6:
+				case 11:
 					tilepane.getChildren().add(drapeau_noirView);
-				case 7:
+					break;
+				case 12:
 					tilepane.getChildren().add(feuView);
 					break;
 				default:
@@ -147,15 +142,14 @@ public class VueTerrain {
 		ListeNonAccessibles.add(1);
 		ListeNonAccessibles.add(2);
 		ListeNonAccessibles.add(3);
-		ListeNonAccessibles.add(6);
-		ListeNonAccessibles.add(7);
+		ListeNonAccessibles.add(11);
+		ListeNonAccessibles.add(12);
 		for (int i = 0; i < ListeNonAccessibles.size(); i++) {
 			if (ListeNonAccessibles.get(i) == codetuile) {
 				blocage = true;
 			}
 		}
  		return blocage;
-
 	}
 
 }

@@ -11,11 +11,18 @@ import src.modele.acteur.Archers;
 import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Loup;
+import src.modele.armes.Arc;
+import src.modele.armes.Arme;
+import src.modele.armes.Feu;
+import src.modele.armes.Pistolet;
+import src.modele.items.Items;
+import src.modele.items.Potion;
 
 public class Environnement {
 	private ObservableList<Acteur> acteurs;
 	private ObservableList<Arme> armes;
 	private ObservableList<Terrain> maps;
+	private ObservableList<Items> items;
 	private int height;
 	private int width;
 	private IntegerProperty nbMortsProperty;
@@ -28,6 +35,7 @@ public class Environnement {
 		this.acteurs = FXCollections.observableArrayList();
 		this.armes = FXCollections.observableArrayList();
 		this.maps=FXCollections.observableArrayList();
+		this.items=FXCollections.observableArrayList();
 		this.nbMortsProperty = new SimpleIntegerProperty(0);
         this.DiscussionProperty= new SimpleStringProperty("");
 		this.piecedor=new SimpleIntegerProperty(0);
@@ -79,8 +87,16 @@ public class Environnement {
 		acteurs.add(a);
 	}
 
-	public void ajouterArm(Arme a) {
+	public void ajouterArme(Arme a) {
 		armes.add(a);
+	}
+	
+	public void ajouterItem(Items i) {
+		items.add(i);
+	}
+
+	public ObservableList<Items> getItems() {
+		return items;
 	}
 
 	public ObservableList<Acteur> getActeurs() {
@@ -103,6 +119,15 @@ public class Environnement {
 		for (Acteur a : this.acteurs) {
 			if (a.getId().equals(id)) {
 				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Items getItem(String id) {
+		for (Items i  : this.items) {
+			if (i.getId().equals(id)) {
+				return i;
 			}
 		}
 		return null;
@@ -222,6 +247,7 @@ public class Environnement {
 //		
 //	}
     public void init() {
+    	this.ajouterItem(new Potion(this));
 //		this.ajouterActeur(new Archers(this,100,319));
 //		this.ajouterActeur(new Loup(this));
 //		this.ajouterActeur(new Gobelin(this,532,415));

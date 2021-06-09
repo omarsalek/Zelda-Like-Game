@@ -1,5 +1,6 @@
-package src.modele;
+package src.modele.armes;
 
+import src.modele.Environnement;
 import src.modele.acteur.Link;
 
 public class Arc extends Arme {

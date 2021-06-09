@@ -147,7 +147,7 @@ public abstract class Acteur  {
 				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
 			this.setX(this.getX() - 16);
 		} else {
-			this.setX(this.getX() + 16);
+			this.setX(this.getX() + 1);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 		}
@@ -158,7 +158,7 @@ public abstract class Acteur  {
 				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
 			this.setX(this.getX() + 16);
 		} else {
-			this.setX(this.getX() - 16);
+			this.setX(this.getX() - 1);
 		}
 		System.out.println("x" + getX());
 		System.out.println("y" + getY());
@@ -169,7 +169,7 @@ public abstract class Acteur  {
 				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
 			this.setY(this.getY() + 16);
 		} else {
-			this.setY(this.getY() - 16);
+			this.setY(this.getY() - 1);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 		}
@@ -183,7 +183,7 @@ public abstract class Acteur  {
 			// position dans le terrain
 			this.setY(this.getY() - 16);
 		} else {
-			this.setY(this.getY() + 16);
+			this.setY(this.getY() + 1);
 			if (this.getY()==623) {
 				this.chargerLaDeuxiemeMap=true;
 				this.setY(-1);

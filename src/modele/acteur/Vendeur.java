@@ -4,7 +4,7 @@ import src.modele.Environnement;
 public class Vendeur extends Acteur {
 
 		public Vendeur(Environnement env) {
-			super("Magasinier", "Casserole", 2, 12, 400, 130, env);
+			super("Magasinier", "Casserole", 2, 12, 126, 168, env);
 		}
 
 		@Override

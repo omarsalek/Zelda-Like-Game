@@ -1,7 +1,8 @@
-package src.modele;
+package src.modele.armes;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import src.modele.Environnement;
 
 public abstract class Arme {
 

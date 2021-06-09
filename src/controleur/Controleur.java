@@ -17,15 +17,12 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
-import src.application.vue.ShopVue;
+import src.application.vue.VueItems;
 import src.application.vue.VueLink;
 import src.application.vue.VueTerrain;
 import src.application.vue.VueVendeur;
-import src.modele.acteur.Dragon;
 import src.modele.Environnement;
 import src.modele.Terrain;
-import src.modele.Pistolet;
-import src.modele.acteur.Acteur;
 import src.modele.acteur.Link;
 import src.modele.acteur.Vendeur;
 
@@ -59,7 +56,7 @@ public class Controleur implements Initializable {
 //	private Dragon drag ;
 //	private Pistolet pistolet ;
 	private Vendeur vendeur;
-	private ShopVue VueShop;
+	private VueItems itemView;
 	// Cette m√©thode va nous permettre de faire d√©placer Link.
 	@FXML
 	void DeplacerLink(KeyEvent e) {
@@ -67,7 +64,7 @@ public class Controleur implements Initializable {
 			e.consume();
 			return;
 		}
-		// Ce switch case va faire d√©placer Link dans 4 directions diff√©rentes.
+		// Ce switch case va faire d√©placer Link dans 4 directions diffÈrentes.
 		switch (e.getCode()) {
 		case RIGHT:
 			System.out.println("Link se deplace a droit ");
@@ -98,7 +95,7 @@ public class Controleur implements Initializable {
 			break;
 		case P:
 			if (this.link.prendreArme()){
-			this.linkVue.modifierLink(link);
+				this.linkVue.modifierLink(link);
 			}
 			else {
 				System.out.println("Pas d'arme d'arme ‡ proximitÈ");
@@ -121,9 +118,13 @@ public class Controleur implements Initializable {
 			if (this.link.isChargerLaDeuxiemeMap() == true) {
 				if (this.link.acheterPistolet()==true) {
 					this.linkVue.modifierLink(link);
-
 				}
 			}
+			break;
+		case B: 
+			this.link.boirePotion();
+			System.out.println("Link boit la potion !");
+			System.out.println(this.link.getPtv());
 			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
@@ -139,8 +140,11 @@ public class Controleur implements Initializable {
 		this.link.setNom_map("map2.csv");
 		this.mapVue = new VueTerrain(map, tilepane);
 		this.mapVue.afficherterrain2();
-		this.VueShop = new  ShopVue(pane);
-		this.VueShop.afficherShop();
+		this.itemView = new VueItems(pane);
+		this.itemView.afficherShop();
+		this.env.getItems().addListener(new MonObservateurItems(this.pane,env));
+		MonObservateurItems itemsView = new MonObservateurItems(pane,env);
+		itemsView.afficherItems();
 		this.vendeur = new Vendeur(env);
 		this.env.ajouterActeur(vendeur);
 		this.vendeurVue = new VueVendeur(pane);
@@ -165,10 +169,10 @@ public class Controleur implements Initializable {
 					this.env.arc().TirerDepuisArc(link);
 				
 				}
-				 if(this.env.DragonEstMort()==false) {
-					this.env.drag().TirerDepuisdragon(link) ;
+//				 if(this.env.DragonEstMort()==false) {
+//					this.env.drag().TirerDepuisdragon(link) ;
 //					this.env.pistolet().TirerDepuispistolet(link);
-				}
+//				}
 				 if (this.env.SeDeplacerTousLesActeurs()==false) {
 						this.link.CollisionEnnemieLeft();
 					}

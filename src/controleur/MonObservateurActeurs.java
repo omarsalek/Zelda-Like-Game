@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import src.application.vue.ActeursVue;
+import src.application.vue.VueActeurs;
 import src.modele.Environnement;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
@@ -15,12 +15,12 @@ import src.modele.acteur.Loup;
 
 public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	private Pane pane;
-	private ActeursVue VueActeur;
+	private VueActeurs VueActeur;
 	private Environnement env;
 
 	public MonObservateurActeurs(Pane pane, Environnement env) {
 		this.pane = pane;
-		this.VueActeur = new ActeursVue(pane);
+		this.VueActeur = new VueActeurs(pane);
 		this.env = env;
 
 	}
@@ -54,12 +54,8 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	public void onChanged(javafx.collections.ListChangeListener.Change<? extends Acteur> c) {
 		while (c.next()) {
 			for (Acteur mort : c.getRemoved()) {
-			    	enleverEnnemi(mort);
-			    	
+			    	enleverEnnemi(mort);  	
 			}
-		
-			
-
 		}
 
 	}

@@ -3,25 +3,37 @@ package src.modele.acteur;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+
 import src.application.vue.VueTerrain;
-import src.modele.Arc;
-import src.modele.Arme;
 import src.modele.acteur.Dragon;
+import src.modele.armes.Arc;
+import src.modele.armes.Arme;
+import src.modele.armes.Epee;
+import src.modele.armes.Feu;
+import src.modele.armes.Pistolet;
+import src.modele.items.Items;
+import src.modele.items.Potion;
 import src.modele.Environnement;
-import src.modele.Epee;
-import src.modele.Feu;
-import src.modele.Pistolet;
 import src.modele.Terrain;
 import src.modele.Terrain;
 
 public class Link extends Acteur {
-
+private Items i;
 	public Link(Environnement env) {
 		super("Link", "poignard", 4, 50, 356, 303, env);
 
 	}
 
-
+	public void boirePotion() {
+		for (Items i : this.env.getItems()) {
+			if(i instanceof Potion && (i.getX() / 16 == this.getX() / 16 && i.getY() / 16 == this.getY() / 16)) {
+				this.setPTV(50);
+				this.env.getItems().remove(i);
+			}
+		}
+	}
+	
 	public Boolean prendreArme() {
 		System.out.println("Link essayes de prendre l'arme");
 		System.out.println("link pointsATT avant  : " + this.getPointsATT());
@@ -60,7 +72,6 @@ public class Link extends Acteur {
 	private Arme TrouverArc() {
         for (Arme m : this.env.getArmes()) {
             if (m instanceof Arc) {
-
                 return m;
             }
         }
@@ -70,10 +81,8 @@ public class Link extends Acteur {
 	private Arme TrouverFeu() {
         for (Arme m : this.env.getArmes()) {
             if (m instanceof Feu) {
-
                 return m;
             }
-
         }
 		return null;
 	}

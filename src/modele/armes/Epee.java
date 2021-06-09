@@ -1,5 +1,6 @@
-package src.modele;
+package src.modele.armes;
 
+import src.modele.Environnement;
 
 public class Epee extends Arme {
 	public Epee(Environnement env) {
