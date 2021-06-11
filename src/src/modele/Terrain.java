@@ -14,7 +14,7 @@ public class Terrain {
 	private ObservableList<Terrain> maps;
 	private String cheminfichier ;
 	private int [][] map;
-	private int[][] map2;
+	//private int[][] map2;
 
 		
 	public int[][] lireFichier(String chemin) {

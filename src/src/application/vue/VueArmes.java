@@ -65,4 +65,16 @@ public class VueArmes {
 		pane.getChildren().add(pistoVue);
 
 	}
+	public void afficherFeu(Arme a) {
+		Image Feu = new Image(getClass().getResourceAsStream("FeuDragon.PNG"));
+		ImageView FeuVue = new ImageView(Feu);
+		//On lui donne un id
+		FeuVue.setId(a.getId());
+		FeuVue.translateXProperty().bind(a.getxProperty());
+		FeuVue.translateYProperty().bind(a.getyProperty());
+		//Quand on click sur l'arc la console affiche ses informations.
+		FeuVue.setOnMouseClicked(e -> System.out.println("Attention " + a.getId() + " c'est du feu"));
+		pane.getChildren().add(FeuVue);
+
+	}
 }

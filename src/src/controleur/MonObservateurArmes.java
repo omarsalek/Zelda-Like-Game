@@ -13,6 +13,7 @@ import src.modele.acteur.Loup;
 import src.modele.armes.Arc;
 import src.modele.armes.Arme;
 import src.modele.armes.Epee;
+import src.modele.armes.Feu;
 
 public class MonObservateurArmes implements ListChangeListener<Arme> {
 	private Pane pane;
@@ -35,6 +36,20 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 				this.VueArme.afficherEpee(m);
 			}
 		}
+
+	}
+	public void AfficherNouveauArme(Arme m) {
+		
+		if (m instanceof Arc) {
+			this.VueArme.afficherArc(m);
+
+		}
+		if (m instanceof Epee) {
+			this.VueArme.afficherEpee(m);
+		}
+		if (m instanceof Feu) {
+			this.VueArme.afficherFeu(m);
+		}
 	}
 
 	private void enleverArme(Arme ArmeDisparu) {
@@ -46,6 +61,9 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 		while (c.next()) {
 			for (Arme ArmeDisparu : c.getRemoved()) {
 				enleverArme(ArmeDisparu);
+			}
+			for (Arme nouveau : c.getAddedSubList()) {
+				AfficherNouveauArme(nouveau);
 			}
 
 		}

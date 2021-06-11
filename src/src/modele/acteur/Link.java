@@ -21,15 +21,17 @@ import src.modele.Terrain;
 public class Link extends Acteur {
 private Items i;
 	public Link(Environnement env) {
-		super("Link", "poignard", 4, 50, 356, 303, env);
+		super("Link", "poignard", 4, 48, 356, 536, env);
 
 	}
 
 	public void boirePotion() {
 		for (Items i : this.env.getItems()) {
-			if(i instanceof Potion && (i.getX() / 16 == this.getX() / 16 && i.getY() / 16 == this.getY() / 16)) {
+			System.out.println("potion"+i);
+			if((i instanceof Potion )&& (i.getX() / 16 == this.getX() / 16 && i.getY() / 16 == this.getY() / 16)) {
 				this.setPTV(50);
 				this.env.getItems().remove(i);
+				this.env.getItems().add(null);
 			}
 		}
 	}
@@ -69,29 +71,11 @@ private Items i;
 	}
 
 
-	private Arme TrouverArc() {
-        for (Arme m : this.env.getArmes()) {
-            if (m instanceof Arc) {
-                return m;
-            }
-        }
-		return null;
-	}
-
-	private Arme TrouverFeu() {
-        for (Arme m : this.env.getArmes()) {
-            if (m instanceof Feu) {
-                return m;
-            }
-        }
-		return null;
-	}
 
 	@Override
 	public void attaque() {
 		System.out.println("link attaque");
 		for (Acteur m : this.TrouverEnnemi()) {
-			System.out.println("en" + m);
 			if (m instanceof Gobelin) {
 				System.out.println("Link attaque gobelin");
 				m.decrementerPv(this.getPointsATT());
@@ -109,32 +93,32 @@ private Items i;
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
 				System.out.println("point de vie Archer :" + m.getPtv());
-				if (m.getPtv() == 0) {
-					this.env.getArmes().remove(this.TrouverArc());
-					this.env.getArmes().add(null);
+				if (m.getPtv() <= 0) {
+					this.env.getArmes().remove(this.env.trouverArc());
+					//this.env.getArmes().add(null);
 				}
 			}
 			if (m instanceof Dragon) {
 				System.out.println("Link attaque dragon");
 				m.decrementerPv(this.getPointsATT());
+				System.out.println("link"+this.getPtv());
 				this.decrementerPv(m.getPointsATT());
 				System.out.println("point de vie dragon:" + m.getPtv());
-				if (m.getPtv() == 0) {
-					this.env.getArmes().remove(this.TrouverFeu());
+				if (m.getPtv() <= 0) {
+					this.env.getArmes().remove(this.env.trouverFeu());
 					this.env.getArmes().add(null);
-				
-			
+					System.out.println(this.env.trouverFeu());
 			}
 				
 			}
-			if (m.getPtv() == 0) {
+			if (m.getPtv() <= 0) {
 				System.out.println("ennemi mort");
 				this.env.getActeurs().remove(m);
 				//this.env.getActeurs().add(null);
 				this.env.nbMortsProperty().setValue(this.env.nbMortsProperty().getValue() + 1);
 				this.env.nbpieceProperty().setValue(this.env.nbpieceProperty().getValue() + 1);
 				if (this.env.getnbMorts() == 4) {
-					JOptionPane.showMessageDialog(null, "Fï¿½licitation vous avez gagnï¿½");
+					JOptionPane.showMessageDialog(null, "Felicitation vous avez gagne");
 				}
 
 			}
@@ -152,7 +136,7 @@ private Items i;
 		ArrayList<Acteur> ListeDesActeursTrouves = new ArrayList<Acteur>();
 		for (Acteur m : this.env.getActeurs()) {
 
-			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers|| m instanceof Dragon) {
+			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers|| m instanceof Dragon ) {
 
 				if ((this.getY() - 5 <= m.getY() && m.getY() <= this.getY() + 5)
 						&& (this.getX() - 5 <= m.getX() && m.getX() <= this.getX() + 5)) {
@@ -166,7 +150,7 @@ private Items i;
 
 	}
 	public boolean acheterPistolet() {
-		if (this.trouverMagasine()) {
+		if (this.scannerAlentours()==1) {
 		if (this.env.getnbpiècedor()>=1) {
 			this.env.discussionProperty().setValue("je prends Ce pistolet Merci");
 			this.env.nbpieceProperty().setValue(this.env.nbpieceProperty().getValue() - 1);
@@ -186,19 +170,25 @@ private Items i;
 		}
 		return false;
 	}
-	public boolean trouverMagasine() {
-		for (Acteur m : this.env.getActeurs()) {
-			if (m instanceof Vendeur) {
-				if (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+	public int scannerAlentours() {
+        for (Acteur m : this.env.getActeurs()) {
+		 if (m instanceof Vendeur) {
+	            if (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16) {
+	                return 1;
+	            }
+	        }
+	        if(m instanceof Princesse) {
+	        	System.out.println(m);
+	            if (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16) {
+	                return 2;
+	            }
+	        }
+	    }
+	    return 0;
+}
 	
 
-
+	
 	@Override
 	public void seFaitAttaquer() {
 		// this.getPtv() = this.getPTV() - ennemis.getPointsATT;

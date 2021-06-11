@@ -25,11 +25,11 @@ public class VueLink {
 
     }
     public void modifierLink(Link link) {
-        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecEpee.png"));
+        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecepee.png"));
         ImageView linkView = new ImageView(link2);
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());
-        pane.getChildren().add(linkView);
+        pane.getChildren().add(linkView);//
         linkView.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null, "Hi je m'appelle Link !"));
     	
     }

@@ -12,15 +12,16 @@ import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
+import src.modele.acteur.Princesse;
 
 public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	private Pane pane;
-	private VueActeurs VueActeur;
+	private VueActeurs vueActeur;
 	private Environnement env;
 
 	public MonObservateurActeurs(Pane pane, Environnement env) {
 		this.pane = pane;
-		this.VueActeur = new VueActeurs(pane);
+		this.vueActeur = new VueActeurs(pane);
 		this.env = env;
 
 	}
@@ -35,26 +36,56 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 	public void AfficherActeurs() {
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Loup) {
-				this.VueActeur.afficherLoup(m);
+				this.vueActeur.afficherLoup(m);
 			}
 			if (m instanceof Gobelin) {
-				this.VueActeur.afficherGobelin(m);
+				this.vueActeur.afficherGobelin(m);
 
 			}
 			if (m instanceof Archers) {
-				this.VueActeur.afficherArcher(m);
+				this.vueActeur.afficherArcher(m);
 			}
-//			if (m instanceof Dragon) {
-//				this.VueActeur.afficherDragon(m);
-//			}
+			if (m instanceof Dragon) {
+				this.vueActeur.afficherDragon(m);
+			}
+			if(m instanceof Princesse) {
+				this.vueActeur.afficherZelda(m);
+			}
 		}
+		
+		
 	}
+	public void AfficherNouveauActeur(Acteur m) {
+			if (m instanceof Loup) {
+				this.vueActeur.afficherLoup(m);
+			}
+			if (m instanceof Gobelin) {
+				this.vueActeur.afficherGobelin(m);
+
+			}
+			if (m instanceof Archers) {
+				this.vueActeur.afficherArcher(m);
+			}
+			if (m instanceof Dragon) {
+				this.vueActeur.afficherDragon(m);
+			}
+			if(m instanceof Princesse) {
+				this.vueActeur.afficherZelda(m);
+			}
+		}
+		
+		
+
+
 
 	@Override
 	public void onChanged(javafx.collections.ListChangeListener.Change<? extends Acteur> c) {
 		while (c.next()) {
 			for (Acteur mort : c.getRemoved()) {
 			    	enleverEnnemi(mort);  	
+			}
+			for (Acteur nouveau : c.getAddedSubList()) {
+				AfficherNouveauActeur(nouveau);
 			}
 		}
 

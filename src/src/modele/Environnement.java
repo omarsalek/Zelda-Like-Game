@@ -11,8 +11,10 @@ import src.modele.acteur.Archers;
 import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Loup;
+import src.modele.acteur.Princesse;
 import src.modele.armes.Arc;
 import src.modele.armes.Arme;
+import src.modele.armes.Epee;
 import src.modele.armes.Feu;
 import src.modele.armes.Pistolet;
 import src.modele.items.Items;
@@ -26,22 +28,21 @@ public class Environnement {
 	private int height;
 	private int width;
 	private IntegerProperty nbMortsProperty;
-	private IntegerProperty piecedor ;
-	private Terrain map ;
-    private StringProperty DiscussionProperty;
+	private IntegerProperty piecedor;
+	private Terrain map;
+	private StringProperty DiscussionProperty;
 
-
-	public Environnement(int width, int height,Terrain map) {
+	public Environnement(int width, int height, Terrain map) {
 		this.acteurs = FXCollections.observableArrayList();
 		this.armes = FXCollections.observableArrayList();
-		this.maps=FXCollections.observableArrayList();
-		this.items=FXCollections.observableArrayList();
+		this.maps = FXCollections.observableArrayList();
+		this.items = FXCollections.observableArrayList();
 		this.nbMortsProperty = new SimpleIntegerProperty(0);
-        this.DiscussionProperty= new SimpleStringProperty("");
-		this.piecedor=new SimpleIntegerProperty(0);
+		this.DiscussionProperty = new SimpleStringProperty("");
+		this.piecedor = new SimpleIntegerProperty(0);
 		this.height = height;
 		this.width = width;
-		this.map=map ;
+		this.map = map;
 	}
 
 	public Terrain getMap() {
@@ -51,7 +52,8 @@ public class Environnement {
 	public void setMap(Terrain map) {
 		this.map = map;
 	}
-    public final String getDiscussion() {
+
+	public final String getDiscussion() {
 		return this.DiscussionProperty.getValue();
 	}
 
@@ -66,15 +68,19 @@ public class Environnement {
 	public final int getnbMorts() {
 		return this.nbMortsProperty.getValue();
 	}
+
 	public final int getnbpiècedor() {
 		return this.piecedor.getValue();
 	}
+
 	public final void setnbpiece(int estmort) {
 		this.piecedor.setValue(estmort);
 	}
+
 	public final IntegerProperty nbpieceProperty() {
 		return this.piecedor;
 	}
+
 	public final IntegerProperty nbMortsProperty() {
 		return this.nbMortsProperty;
 	}
@@ -90,7 +96,7 @@ public class Environnement {
 	public void ajouterArme(Arme a) {
 		armes.add(a);
 	}
-	
+
 	public void ajouterItem(Items i) {
 		items.add(i);
 	}
@@ -102,18 +108,18 @@ public class Environnement {
 	public ObservableList<Acteur> getActeurs() {
 		return acteurs;
 	}
+
 	public ObservableList<Terrain> getterrains() {
 		return this.maps;
 	}
+
 	public void ajouterTerrain(Terrain t) {
 		maps.add(t);
 	}
-	
 
 	public ObservableList<Arme> getArmes() {
 		return armes;
 	}
-
 
 	public Acteur getActeur(String id) {
 		for (Acteur a : this.acteurs) {
@@ -123,9 +129,9 @@ public class Environnement {
 		}
 		return null;
 	}
-	
+
 	public Items getItem(String id) {
-		for (Items i  : this.items) {
+		for (Items i : this.items) {
 			if (i.getId().equals(id)) {
 				return i;
 			}
@@ -168,95 +174,97 @@ public class Environnement {
 				if (m != null) {
 					return false;
 				}
-			
+
 			}
 		}
 		return true;
 	}
+
 	public boolean DragonEstMort() {
 		for (Acteur m : this.getActeurs()) {
 			if (m instanceof Dragon) {
 				if (m != null) {
 					return false;
 				}
-			
+
 			}
 		}
 		return true;
 	}
 
-
- public boolean SeDeplacerTousLesActeurs() {
+	public boolean SeDeplacerTousLesActeurs() {
 		for (Acteur a : this.acteurs) {
 			if (a instanceof Gobelin || a instanceof Loup) {
 				if (Math.random() < 0.5) {
-					int val = -1 + (int) (Math.random() * (8));
-					a.setX(a.getX() - val);
+					// int val = -1 + (int) (Math.random() * (8));
+					a.setX(a.getX() - 1);
 					return false;
 
 				} else {
-					int val2 = -1 + (int) (Math.random() * (8));
-					a.setX(a.getX() + val2);
+					// int val2 = -1 + (int) (Math.random() * (8));
+					a.setX(a.getX() + 1);
 				}
 			}
 		}
 		return true;
 	}
-	public Arc arc() {
+
+	public Arc trouverArc() {
 		for (Arme m : this.getArmes()) {
-				if (m instanceof Arc) {
-					return (Arc) m;
-				}
+			if (m instanceof Arc) {
+				return (Arc) m;
+			}
 		}
 		return null;
 	}
-	public Feu drag() {
+
+	public Feu trouverFeu() {
 		for (Arme m : this.getArmes()) {
-				if (m instanceof Feu) {
-					return (Feu) m;
-				}
-				
-				
+			if (m instanceof Feu) {
+				return (Feu) m;
+			}
+
 		}
 		return null;
 	}
-	public Pistolet pistolet() {
-		for (Arme m : this.getArmes()) {
-				if (m instanceof Pistolet) {
-					return (Pistolet) m;
-				}
-				
-				
-		}
-		return null;
+
+
+	public static boolean reussitProba(double pourcent){
+		double x= Math.random();
+		double pp=pourcent/100;
+		return (x<=pp);
 	}
- 
-//	public void init() {
-//		this.ajouterActeur(new Archers(this));
-//		this.ajouterActeur(new Gobelin(this,615,377));
-//		this.ajouterActeur(new Loup(this));
-//		this.ajouterActeur(new Gobelin(this,490,200));
-//		this.ajouterActeur(new Dragon(this));
-//		
-//		this.ajouterArm(new Epee(this));
-//		this.ajouterArm(new Pistolet(this));
-//		this.ajouterArm(new Arc(this));
-//		this.ajouterArm(new Feu(this));
-//		this.ajouterArm(new Money(this));
-//		this.ajouterTerrain(new Terrain());
-//		
-//	}
-    public void init() {
-    	this.ajouterItem(new Potion(this));
-//		this.ajouterActeur(new Archers(this,100,319));
-//		this.ajouterActeur(new Loup(this));
-//		this.ajouterActeur(new Gobelin(this,532,415));
-//		
-//		this.ajouterActeur(new Dragon(this));
-//		this.ajouterActeur(new Gobelin(this,772,255));
-//		this.ajouterArm(new Epee(this));
-//		this.ajouterArm(new Arc(this));
+	public void ajouterdesennemies() {
+		if (this.getActeurs().size() <= 4&& reussitProba(50)) {
+			int val = (int) (1 + (Math.random() * (8)));
+			this.ajouterActeur(new Gobelin(this, 500 - val * 16, 416 + val * 16));
+
+		}
+	}
+	public void supprimerTouslesActeurs() {
+			for (int i=0 ; i<=this.getActeurs().size();i++) {
+				this.getActeurs().remove(i);
+			}
+	}
+
+	public void init() {
+		this.ajouterItem(new Potion(this));
+		this.ajouterActeur(new Archers(this, 100, 319));
+		this.ajouterActeur(new Loup(this));
+		this.ajouterActeur(new Gobelin(this, 532, 416));
+		this.ajouterArme(new Epee(this));
+		this.ajouterArme(new Arc(this));
+
 
 	}
-    
+
+	
+	public void CreerBoss() {
+		this.ajouterArme(new Feu(this));
+		this.ajouterActeur(new Dragon(this));
+        this.ajouterActeur(new Princesse(this));
+
+	}
+
+
 }

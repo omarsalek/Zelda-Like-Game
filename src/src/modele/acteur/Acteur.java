@@ -187,6 +187,7 @@ public abstract class Acteur  {
 			if (this.getY()==623) {
 				this.chargerLaDeuxiemeMap=true;
 				this.setY(-1);
+				this.setX(283);
 			}
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
@@ -194,6 +195,10 @@ public abstract class Acteur  {
 		}
 	}
 	
+	public void setChargerLaDeuxiemeMap(boolean chargerLaDeuxiemeMap) {
+		this.chargerLaDeuxiemeMap = chargerLaDeuxiemeMap;
+	}
+
 	public boolean isChargerLaDeuxiemeMap() {
 		return chargerLaDeuxiemeMap;
 	}

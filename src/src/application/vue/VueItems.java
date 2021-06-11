@@ -36,5 +36,13 @@ public class VueItems {
 			ShopVue.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null,"Bienvenue au shop !"));
 			pane.getChildren().add(ShopVue);
 		}
+	  public void afficherChateau() {
+			Image chateau = new Image(getClass().getResourceAsStream("chateau.png"));
+			ImageView chateauVue = new ImageView(chateau);
+			chateauVue.setTranslateX(700);
+			chateauVue.setTranslateY(80);
+			chateauVue.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null,"Bienvenue au chateau !"));
+			pane.getChildren().add(chateauVue);
+		}
 
 }
