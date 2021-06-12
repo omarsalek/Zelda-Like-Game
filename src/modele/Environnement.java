@@ -279,6 +279,7 @@ public class Environnement {
 
 	
 	public void init() {
+		this.ajouterItem(new Potion(this));
 		this.ajouterActeur(new Archers(this, 96, 320));
 		this.ajouterActeur(new Loup(this));
 		this.ajouterActeur(new Gobelin(this, 532, 416));
@@ -288,7 +289,6 @@ public class Environnement {
 	}
 
 	public void initMap2() {
-		this.ajouterItem(new Potion(this));
 		this.ajouterArme(new BouleDeFeu(this));
 		this.ajouterActeur(new Dragon(this));
         this.ajouterActeur(new Princesse(this));

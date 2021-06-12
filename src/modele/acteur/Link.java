@@ -13,7 +13,7 @@ public class Link extends Acteur {
 	private boolean linkAchete = false;
 	
 	public Link(Environnement env) {
-		super("Link", "poignard, Aucune munition", 4, 48, 356, 536, env);
+		super("Link", "poignard, Aucune munition", 4, 50, 356, 536, env);
 	}
 
 	public boolean getLinkAchete() {
@@ -32,15 +32,16 @@ public class Link extends Acteur {
 		this.estmort = estmort;
 	}
 	
-	public void boirePotion() {
+	public boolean boirePotion() {
 		for (Item i : this.env.getItems()) {
-			System.out.println("potion" + i);
 			if ((i instanceof Potion) && (i.getX() / 16 == this.getX() / 16 && i.getY() / 16 == this.getY() / 16)) {
 				this.setPTV(50);
 				this.env.getItems().remove(i);
 				this.env.getItems().add(null);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public Boolean prendreEpee() {
@@ -61,32 +62,34 @@ public class Link extends Acteur {
 
 	@Override
 	public void attaque() {
-		System.out.println("Link attaque");
 		for (Acteur m : this.scanEnnemis()) {
 			if (m instanceof Gobelin) {
 				System.out.println("Link attaque le gobelin " + m.getId());
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
+				System.out.println("Points de vie de Link : " + this.getPtv());
 				System.out.println("Points de vie du Gobelin :" + m.getPtv());
 			}
 			if (m instanceof Loup) {
 				System.out.println("Link attaque le loup " + m.getId());
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
+				System.out.println("Points de vie de Link : " + this.getPtv());
 				System.out.println("Points de vie du loup :" + m.getPtv());
 			}
 			if (m instanceof Archers) {
 				System.out.println("Link attaque l'archer " + m.getId());
 				m.decrementerPv(this.getPointsATT());
 				this.decrementerPv(m.getPointsATT());
+				System.out.println("Points de vie de Link : " + this.getPtv());
 				System.out.println("Points de vie de l'archer :" + m.getPtv());
 
 			}
 			if (m instanceof Dragon) {
 				System.out.println("Link attaque le grand Dragon");
 				m.decrementerPv(this.getPointsATT());
-				System.out.println("link" + this.getPtv());
 				this.decrementerPv(m.getPointsATT());
+				System.out.println("Points de vie de Link : " + this.getPtv());
 				System.out.println("Points de vie du dragon:" + m.getPtv());
 
 			}

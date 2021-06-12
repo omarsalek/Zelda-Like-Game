@@ -91,7 +91,7 @@ public class Controleur implements Initializable {
 				if (this.link.prendreEpee()) {
 					this.linkVue.modifierLinkEpee(link);
 				} else {
-					System.out.println("Pas d'arme d'arme à proximité");
+					JOptionPane.showMessageDialog(null, "Il n'y a pas d'arme à proximité.");
 				}
 				break;
 			case A:
@@ -107,10 +107,13 @@ public class Controleur implements Initializable {
 				}
 				break;
 			case B:
-				System.out.println("Points de vie de Link : " + this.link.getPtv());
-				this.link.boirePotion();
-				System.out.println("Link boit la potion !");
-				System.out.println("Points de vie de Link :" + this.link.getPtv());
+				if(this.link.boirePotion()) {
+					System.out.println("Link boit la potion !");
+					System.out.println("Points de vie de Link :" + this.link.getPtv());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Vous devez d'abord trouver une potion !");
+				}
 				break;
 			case T:
 				if (this.link.getLinkAchete()) {
@@ -208,7 +211,7 @@ public class Controleur implements Initializable {
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane, env));
 		this.env.getActeurs().addListener(new MonObservateurActeurs(this.pane, env));
-		Coeurs.radiusXProperty().bind(this.link.pointsVIE().multiply(1));
+		Coeurs.radiusXProperty().bind(this.link.pointsVIE());
 		MonObservateurActeurs ActeursVues = new MonObservateurActeurs(pane, env);
 		MonObservateurArmes ArmesVues = new MonObservateurArmes(pane, env);
 		ActeursVues.afficherActeurs();
