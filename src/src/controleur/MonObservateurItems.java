@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 import src.application.vue.VueActeurs;
 import src.application.vue.VueItems;
 import src.modele.Environnement;
-import src.modele.armes.Arc;
+import src.modele.armes.BulletPisolet;
 import src.modele.armes.Arme;
 import src.modele.armes.Epee;
 import src.modele.items.Items;

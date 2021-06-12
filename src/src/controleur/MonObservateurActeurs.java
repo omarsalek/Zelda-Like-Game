@@ -51,6 +51,7 @@ public class MonObservateurActeurs implements ListChangeListener<Acteur> {
 			if(m instanceof Princesse) {
 				this.vueActeur.afficherZelda(m);
 			}
+			
 		}
 		
 		

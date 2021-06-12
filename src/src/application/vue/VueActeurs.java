@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import src.modele.acteur.Acteur;
 import src.modele.acteur.Dragon;
+import src.modele.acteur.Link;
 
 public class VueActeurs {
 	private Pane pane;
@@ -15,6 +16,7 @@ public class VueActeurs {
 	public VueActeurs(Pane pane) {
 		this.pane = pane;
 	}
+	 
 
 	public void afficherLoup(Acteur m) {
 		Image Lop = new Image(getClass().getResourceAsStream("Loup.png"));

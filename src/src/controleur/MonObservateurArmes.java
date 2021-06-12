@@ -10,6 +10,7 @@ import src.modele.acteur.Archers;
 import src.modele.acteur.Gobelin;
 import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
+import src.modele.armes.BulletPisolet;
 import src.modele.armes.Arc;
 import src.modele.armes.Arme;
 import src.modele.armes.Epee;
@@ -28,6 +29,10 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 
 	public void AfficherArmes() {
 		for (Arme m : this.env.getArmes()) {
+			if (m instanceof BulletPisolet) {
+				this.VueArme.afficherBullet(m);
+
+			}
 			if (m instanceof Arc) {
 				this.VueArme.afficherArc(m);
 
@@ -40,8 +45,8 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 	}
 	public void AfficherNouveauArme(Arme m) {
 		
-		if (m instanceof Arc) {
-			this.VueArme.afficherArc(m);
+		if (m instanceof BulletPisolet) {
+			this.VueArme.afficherBullet(m);
 
 		}
 		if (m instanceof Epee) {
@@ -49,6 +54,10 @@ public class MonObservateurArmes implements ListChangeListener<Arme> {
 		}
 		if (m instanceof Feu) {
 			this.VueArme.afficherFeu(m);
+		}
+		if (m instanceof Arc) {
+			this.VueArme.afficherArc(m);
+
 		}
 	}
 

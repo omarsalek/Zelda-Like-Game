@@ -28,6 +28,18 @@ public class VueArmes {
 		pane.getChildren().add(ArcVue);
 
 	}
+	public void afficherBullet(Arme bullet) {
+		Image Bullet1 = new Image(getClass().getResourceAsStream("bullet.png"));
+		ImageView BulletVue = new ImageView(Bullet1);
+		//On lui donne un id
+		BulletVue.setId(bullet.getId());
+		BulletVue.translateXProperty().bind(bullet.getxProperty());
+		BulletVue.translateYProperty().bind(bullet.getyProperty());
+		//Quand on click sur l'arc la console affiche ses informations.
+		BulletVue.setOnMouseClicked(e -> System.out.println("Attention " + bullet.getId() + " est une bullet !"));
+		pane.getChildren().add(BulletVue);
+
+	}
 //	public void afficherArgent(Arme argent) {
 //        Image Argent = new Image(getClass().getResourceAsStream("pieceArgent.png"));
 //        ImageView ArgentVue = new ImageView(Argent);

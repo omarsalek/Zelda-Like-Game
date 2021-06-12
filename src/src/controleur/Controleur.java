@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -23,10 +24,8 @@ import src.application.vue.VueTerrain;
 import src.application.vue.VueVendeur;
 import src.modele.Environnement;
 import src.modele.Terrain;
-import src.modele.acteur.Acteur;
 import src.modele.acteur.Link;
 import src.modele.acteur.Vendeur;
-import src.modele.armes.Arme;
 
 public class Controleur implements Initializable {
 	@FXML
@@ -43,7 +42,6 @@ public class Controleur implements Initializable {
 	private Label nbpieceOr;
 	@FXML
 	private Label labelDiscussion;
-	int val = 0;
 	private Timeline gameLoop;
 	private Boolean finDuJeu = false;
 	private int temps;
@@ -52,14 +50,15 @@ public class Controleur implements Initializable {
 	private Terrain map;
 	private VueLink linkVue;
 	private Link link;
-
+	private boolean siLinkachete=false;
+	
 	private Environnement env;
-//	private Dragon drag ;
-//	private Pistolet pistolet ;
 	private Vendeur vendeur;
 	private VueItems itemView;
 
 	// Cette mÃ©thode va nous permettre de faire dÃ©placer Link.
+
+
 	@FXML
 	void DeplacerLink(KeyEvent e) {
 		if (finDuJeu) {
@@ -75,33 +74,30 @@ public class Controleur implements Initializable {
 		case LEFT:
 			System.out.println("Link se deplace a gauche ");
 			this.link.DeplacerLeft();
-
 			break;
 		case UP:
 			System.out.println("Link se deplace en haut ");//
 			this.link.DeplacerUP();
-
 			break;
 		case DOWN:
+			this.env.afficheract();
 			System.out.println("Link se deplace en bas ");
 			// this.link.DeplacerDown();
 			if (this.link.isChargerLaDeuxiemeMap() == false) {
 				System.out.println("pas de deuxieme maps");
 				this.link.DeplacerDown();
 			} else {
-
 				changermap2();
 				this.link.setChargerLaDeuxiemeMap(false);
 				this.env.discussionProperty().setValue("Acheter un pistolet a 1 euro !! ");
 				this.link.DeplacerDown();
-
 			}
 
 			break;
 
 		case P:
-			if (this.link.prendreArme()) {
-				this.linkVue.modifierLink(link);
+			if (this.link.prendreEpee()) {
+				this.linkVue.modifierLinkAvecEpee(link);
 			} else {
 				System.out.println("Pas d'arme d'arme à proximité");
 			}
@@ -110,18 +106,13 @@ public class Controleur implements Initializable {
 				// Link attque l'ennemi et aussi le gobelin attaque au meme temps.
 			this.link.attaque();
 			break;
-		case T:
-			if (this.link.prendrepistolet()) {
-				this.linkVue.modifierLinkarme(link);
-
-			} else {
-				System.out.println("Pas d'arme d'arme à proximité");
-			}
-			break;
 		case C:
-				if (this.link.acheterPistolet() == true) {
-					this.linkVue.modifierLinkarme(link);
-				}
+				if (this.link.acheterMunitionsPistolet()) {
+						this.linkVue.modifierLinkarme(link);
+						this.setSiLinkachete(true);
+					}
+			
+			
 				if (this.link.scannerAlentours() == 2) {
 					JOptionPane.showMessageDialog(null, "Merci de m'avoir sauver Link !");
 				}
@@ -134,10 +125,30 @@ public class Controleur implements Initializable {
 			System.out.println("Link boit la potion !");
 			System.out.println("apres" + this.link.getPtv());
 			break;
+		case T:
+			//tester si link a acheter l'arme
+		if (this.siLinkachete()==true) {
+			this.env.setTirerDepuisLink(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "pas encore de munitions achetées !");
+	}
+		
+//		
+//
+			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Choisissez la bonne touche SVP !");
 			break;
 		}
+	}
+	public boolean siLinkachete() {
+		return siLinkachete;
+	}
+
+
+	public void setSiLinkachete(boolean val) {
+		this.siLinkachete = val;
 	}
 
 	public void changermap2() {
@@ -161,39 +172,40 @@ public class Controleur implements Initializable {
 		this.vendeurVue = new VueVendeur(pane);
 		this.vendeurVue.creerVendeur(vendeur);
 	}
-
-	// Cette mÃ©thode est la boucle de notre jeu (timer pour l'instant).
+	// Cette methode est la boucle de notre jeu (timer pour l'instant).
 	private void initAnimation() {
 		gameLoop = new Timeline();
 		temps = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.18), (ev -> {
-			if (temps == 20000) {
+		KeyFrame kf = new KeyFrame(Duration.seconds(0.05), (ev -> {
+			if (temps == 90000) {
 				finDuJeu = true;
 				gameLoop.stop();
 				JOptionPane.showMessageDialog(null, "Jeu arreté , au revoir !");
-
 			} else {
 				this.env.SeDeplacerTousLesActeurs();
-				// this.env.agir
 				this.env.ajouterdesennemies();
-
 				if (this.env.ArcherEstMort() == false) {
-
 					this.env.trouverArc().TirerDepuisArc(link);
-
+				}
+				if (this.env.ArcherEstMort() == true) {
+					this.env.getArmes().remove(this.env.trouverArc());	
+					}
+				if(this.env.isTirerDepuisLink()==true) {
+					this.env.trouverBullet().TirerDepuisPistolet(link);
 				}
 				if (this.env.DragonEstMort() == false) {
 					this.env.trouverFeu().TirerDepuisdragon(link);
 				}
+				
 				if (this.env.SeDeplacerTousLesActeurs() == false) {
 					this.link.CollisionEnnemieLeft();
 				} else {
 					this.link.CollisionEnnemieRight();
 				}
-
-			}
+		
+					}
 			temps++;
 
 		}));

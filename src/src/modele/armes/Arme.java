@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import src.modele.Environnement;
 
 public abstract class Arme {
-
 	private String nom;
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;

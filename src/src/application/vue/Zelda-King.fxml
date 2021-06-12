@@ -41,7 +41,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-                  <Label prefHeight="45.0" prefWidth="227.0" style="-fx-border-color: black;" text="Nbre de piece d'or">
+                  <Label contentDisplay="RIGHT" prefHeight="45.0" prefWidth="227.0" style="-fx-border-color: black;" text="Pieces d'or" textAlignment="CENTER">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -51,6 +51,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
             <Label fx:id="labelDiscussion" prefHeight="79.0" prefWidth="220.0" style="-fx-border-color: BLUE;" text="Discussion Entre Link et Vendeur" textFill="#0011ff">
                <font>
                   <Font size="13.0" />

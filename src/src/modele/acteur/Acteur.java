@@ -1,6 +1,8 @@
 package src.modele.acteur;
 
 
+import javax.swing.JOptionPane;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import src.application.vue.VueTerrain;
@@ -8,11 +10,10 @@ import src.modele.Environnement;
 import src.modele.Terrain;
 
 public abstract class Acteur  {
-	
 	private String nom;
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;;
-	private String arme;
+	private String nomArme;
 	private String nom_map ;
 	private boolean chargerLaDeuxiemeMap;
 	private int pointsATT;
@@ -20,14 +21,13 @@ public abstract class Acteur  {
 	private String id;
 	protected Environnement env;
 	public static int compteur = 0;
-
 	public Acteur(String nom, String arme, int ptA, int ptv, int x, int y, Environnement env)  {
 		this.nom = nom;
 		this.env = env;
 		this.chargerLaDeuxiemeMap=false;
 		this.xProperty = new SimpleIntegerProperty(x);
 		this.yProperty = new SimpleIntegerProperty(y);
-		this.arme = arme;
+		this.nomArme = arme;
 		this.pointsATT = ptA;
 		this.nom_map = null;
 		this.pointsVIE = new SimpleIntegerProperty(ptv);
@@ -97,7 +97,7 @@ public abstract class Acteur  {
 	}
 
 	public void setArme(String arme) {
-		this.arme = arme;
+		this.nomArme = arme;
 	}
 	
 
@@ -117,7 +117,7 @@ public abstract class Acteur  {
 
 	public String getArme() {
 		
-		return arme;
+		return nomArme;
 	}
 
 	public int getPointsATT() {
@@ -126,11 +126,20 @@ public abstract class Acteur  {
 
 
 	public void decrementerPv(int n)  {
+		if (this.getPtv() <= 0) {//exception
+			this.env.getActeurs().remove(this);
+			this.env.nbpieceProperty().setValue(this.env.nbpieceProperty().getValue() + 1);
+			this.env.nbMortsProperty().setValue(this.env.nbMortsProperty().getValue() + 1);
+			
+		}
+		else {
 		this.pointsVIE.setValue(this.pointsVIE.getValue() - n);
+		}
 	}
 
 	public abstract void attaque();
 	public abstract void seFaitAttaquer();
+	
 	public boolean collisionEntreLinkEtEnnemis(Terrain t) {
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers) {
@@ -148,8 +157,11 @@ public abstract class Acteur  {
 			this.setX(this.getX() - 16);
 		} else {
 			this.setX(this.getX() + 1);
+			this.env.setDetecterPoSTirage(1);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
+			this.env.trouverBullet().setX(this.getX());
+			this.env.trouverBullet().setY(this.getY());
 		}
 	}
 
@@ -159,6 +171,9 @@ public abstract class Acteur  {
 			this.setX(this.getX() + 16);
 		} else {
 			this.setX(this.getX() - 1);
+			this.env.setDetecterPoSTirage(3);
+			this.env.trouverBullet().setX(this.getX());
+			this.env.trouverBullet().setY(this.getY());
 		}
 		System.out.println("x" + getX());
 		System.out.println("y" + getY());
@@ -170,8 +185,12 @@ public abstract class Acteur  {
 			this.setY(this.getY() + 16);
 		} else {
 			this.setY(this.getY() - 1);
+			this.env.setDetecterPoSTirage(4);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
+			this.env.trouverBullet().setX(this.getX());
+			this.env.trouverBullet().setY(this.getY());
+			
 		}
 
 	}
@@ -184,16 +203,25 @@ public abstract class Acteur  {
 			this.setY(this.getY() - 16);
 		} else {
 			this.setY(this.getY() + 1);
-			if (this.getY()==623) {
+			this.env.setDetecterPoSTirage(2);
+			//tester si achat
+			//if (this.env.link().acheterPistolet()==true) {
+			this.env.trouverBullet().setX(this.getX());
+			this.env.trouverBullet().setY(this.getY());
+			//}
+			if (this.getY()==600) {
 				this.chargerLaDeuxiemeMap=true;
 				this.setY(-1);
 				this.setX(283);
+				
+
 			}
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
 
 		}
 	}
+	
 	
 	public void setChargerLaDeuxiemeMap(boolean chargerLaDeuxiemeMap) {
 		this.chargerLaDeuxiemeMap = chargerLaDeuxiemeMap;
@@ -205,8 +233,8 @@ public abstract class Acteur  {
 	
 	public void CollisionEnnemieRight() {
 		for (Acteur m : this.env.getActeurs()) {
-			if ((m instanceof Gobelin || m instanceof Loup ) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16 +1)])) {
-					m.setX(m.getX() - 16);
+			if ((m instanceof Gobelin || m instanceof Loup || m instanceof Dragon || m instanceof Princesse) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16 +1)])) {
+					m.setX(m.getX() - 1);
 				}
 			else {
 					m.setX(m.getX());
@@ -216,8 +244,8 @@ public abstract class Acteur  {
 	
 	public void CollisionEnnemieLeft() {
 		for (Acteur m : this.env.getActeurs()) {
-			if ((m instanceof Gobelin || m instanceof Loup ) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16)])) {
-					m.setX(m.getX() +16);
+			if ((m instanceof Gobelin || m instanceof Loup || m instanceof Dragon  || m instanceof Princesse) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16)])) {
+					m.setX(m.getX() +1);
 				}
 			else {
 					m.setX(m.getX());
@@ -227,7 +255,7 @@ public abstract class Acteur  {
 
 	@Override
 	public String toString() {
-		return "Acteur [nom=" + nom + ", xProperty=" + xProperty + ", yProperty=" + yProperty + ", arme=" + arme
+		return "Acteur [nom=" + nom + ", xProperty=" + xProperty + ", yProperty=" + yProperty + ", arme=" + nomArme
 				+ ", pointsATT=" + pointsATT + ", pointsVIE=" + pointsVIE + ", id=" + id + "]";
 	}
 }

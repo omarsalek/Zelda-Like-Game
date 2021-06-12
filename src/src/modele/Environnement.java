@@ -1,5 +1,5 @@
 package src.modele;
-
+import javax.swing.JOptionPane;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,17 +10,20 @@ import src.modele.acteur.Acteur;
 import src.modele.acteur.Archers;
 import src.modele.acteur.Dragon;
 import src.modele.acteur.Gobelin;
+import src.modele.acteur.Link;
 import src.modele.acteur.Loup;
 import src.modele.acteur.Princesse;
+import src.modele.armes.BulletPisolet;
 import src.modele.armes.Arc;
 import src.modele.armes.Arme;
 import src.modele.armes.Epee;
 import src.modele.armes.Feu;
-import src.modele.armes.Pistolet;
 import src.modele.items.Items;
 import src.modele.items.Potion;
 
 public class Environnement {
+	private boolean siLinkTire =false;
+	private int DetecterPoSTirage;
 	private ObservableList<Acteur> acteurs;
 	private ObservableList<Arme> armes;
 	private ObservableList<Terrain> maps;
@@ -43,8 +46,15 @@ public class Environnement {
 		this.height = height;
 		this.width = width;
 		this.map = map;
+		this.siLinkTire=false;
+	}
+	public boolean isTirerDepuisLink() {
+		return siLinkTire;
 	}
 
+	public void setTirerDepuisLink(boolean val) {
+		this.siLinkTire = val;
+	}
 	public Terrain getMap() {
 		return map;
 	}
@@ -180,6 +190,7 @@ public class Environnement {
 		return true;
 	}
 
+
 	public boolean DragonEstMort() {
 		for (Acteur m : this.getActeurs()) {
 			if (m instanceof Dragon) {
@@ -191,6 +202,19 @@ public class Environnement {
 		}
 		return true;
 	}
+	
+	public boolean LinkestMort() {
+		for (Acteur m : this.getActeurs()) {
+			if (m instanceof Link) {
+				if (m != null) {
+					return false;
+				}
+
+			}
+		}
+		return true;
+	}
+	
 
 	public boolean SeDeplacerTousLesActeurs() {
 		for (Acteur a : this.acteurs) {
@@ -209,15 +233,22 @@ public class Environnement {
 		return true;
 	}
 
-	public Arc trouverArc() {
+	public BulletPisolet trouverBullet() {
 		for (Arme m : this.getArmes()) {
-			if (m instanceof Arc) {
-				return (Arc) m;
+			if (m instanceof BulletPisolet) {
+				return (BulletPisolet) m;
 			}
 		}
 		return null;
 	}
-
+	public Arc trouverArc() {
+		for (Arme m : this.getArmes()) {
+			if (m instanceof Arc) {
+				return  (Arc) m;
+			}
+		}
+		return null;
+	}
 	public Feu trouverFeu() {
 		for (Arme m : this.getArmes()) {
 			if (m instanceof Feu) {
@@ -229,37 +260,49 @@ public class Environnement {
 	}
 
 
+
 	public static boolean reussitProba(double pourcent){
 		double x= Math.random();
 		double pp=pourcent/100;
 		return (x<=pp);
 	}
 	public void ajouterdesennemies() {
-		if (this.getActeurs().size() <= 4&& reussitProba(50)) {
-			int val = (int) (1 + (Math.random() * (8)));
-			this.ajouterActeur(new Gobelin(this, 500 - val * 16, 416 + val * 16));
+		if (this.getActeurs().size() <= 4 && reussitProba(50)) {
+			int val = (int) (1 + (Math.random() * (2)));
+			this.ajouterActeur(new Gobelin(this, 300 - val * 16, 416 + val * 16));
 
 		}
 	}
-	public void supprimerTouslesActeurs() {
-			for (int i=0 ; i<=this.getActeurs().size();i++) {
-				this.getActeurs().remove(i);
+
+	public void afficheract() {
+		for (Acteur m : this.getActeurs()) {
+			if(m instanceof Link) {
+				this.getActeurs().remove(m);
+			System.out.println("les : ");
 			}
+		}
 	}
 
+	public int getDetecterPoSTirage() {
+		return DetecterPoSTirage;
+	}
+	public void setDetecterPoSTirage(int detecterPoSTirage) {
+		DetecterPoSTirage = detecterPoSTirage;
+	}
 	public void init() {
-		this.ajouterItem(new Potion(this));
-		this.ajouterActeur(new Archers(this, 100, 319));
+		this.ajouterActeur(new Archers(this, 96, 320));
 		this.ajouterActeur(new Loup(this));
 		this.ajouterActeur(new Gobelin(this, 532, 416));
 		this.ajouterArme(new Epee(this));
 		this.ajouterArme(new Arc(this));
-
-
+		this.ajouterArme(new BulletPisolet(this));
+		
 	}
+
 
 	
 	public void CreerBoss() {
+		this.ajouterItem(new Potion(this));
 		this.ajouterArme(new Feu(this));
 		this.ajouterActeur(new Dragon(this));
         this.ajouterActeur(new Princesse(this));
