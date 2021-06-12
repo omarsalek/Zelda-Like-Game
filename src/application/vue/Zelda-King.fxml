@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- fxml-->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="Borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#MecaniquesDuJeu" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controleur.Controleur">
+   <top>
+      <Label prefHeight="33.0" prefWidth="596.0" style="-fx-border-color: BLUE;" text="                         Zelda King" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <graphic>
+            <Ellipse fx:id="Coeurs" fill="DODGERBLUE" radiusX="58.0" radiusY="14.0" stroke="BLACK" strokeType="INSIDE" />
+         </graphic>
+      </Label>
+   </top>
+   <center>
+      <Pane fx:id="pane" prefHeight="640.0" prefWidth="960.0">
+         <children>
+            <TilePane fx:id="tilepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" />
+         </children>
+      </Pane>
+   </center>
+   <left>
+      <VBox prefHeight="640.0" prefWidth="219.0" BorderPane.alignment="CENTER">
+			<children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="226.0" style="-fx-border-color: black;" text="Nbre d'ennemis tués">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelNbMorts" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="34.0" prefWidth="219.0" style="-fx-border-color: red;" text="0" textFill="#ff0c0c">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+                  <Label contentDisplay="RIGHT" prefHeight="45.0" prefWidth="227.0" style="-fx-border-color: black;" text="        Pièces d'or" textAlignment="CENTER">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nbpieceOr" prefHeight="39.0" prefWidth="219.0" style="-fx-border-color: red;" text="                0" textFill="#eb5b26">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <Label fx:id="labelDiscussion" prefHeight="79.0" prefWidth="220.0" style="-fx-border-color: BLUE;" text="Discussion Entre Link et Vendeur" textFill="#0011ff">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </left>
+</BorderPane>
