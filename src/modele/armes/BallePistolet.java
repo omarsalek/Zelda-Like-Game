@@ -10,7 +10,7 @@ import src.modele.acteur.Loup;
 public class BallePistolet extends Arme {
 
 	public BallePistolet(Environnement env) {
-		super("Bullet", 356, 536, 4, 9, env);
+		super("Bullet", 356, 536, 4, 6, env);
 
 	}
 
@@ -49,7 +49,7 @@ public class BallePistolet extends Arme {
 		for (Acteur ennemie : this.env.getActeurs()) {
 			if ((ennemie instanceof Loup || ennemie instanceof Gobelin || ennemie instanceof Archers)
 					&& this.getX() / 16 == ennemie.getX() / 16 && this.getY() / 16 == ennemie.getY() / 16) {
-				if (ennemie.getPtv() >= 0) {// exception
+				if (ennemie.getPtv() >= 0) { // exception
 					ennemie.decrementerPv(this.getTirer());
 				}
 
