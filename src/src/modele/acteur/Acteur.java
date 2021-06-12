@@ -140,9 +140,9 @@ public abstract class Acteur  {
 	public abstract void attaque();
 	public abstract void seFaitAttaquer();
 	
-	public boolean collisionEntreLinkEtEnnemis(Terrain t) {
+	public boolean collisionEntreLinkEtActeurs(Terrain t) {
 		for (Acteur m : this.env.getActeurs()) {
-			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers) {
+			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers || m instanceof Dragon  || m instanceof Princesse) {
 				if (m.getX() / 16 == this.getX() / 16 && m.getY() / 16 == this.getY() / 16) {
 					return true;
 				}
@@ -153,7 +153,7 @@ public abstract class Acteur  {
 
 	public void DeplacerRight() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16 ][(this.getX() / 16 + 1)])
-				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
+				|| this.collisionEntreLinkEtActeurs(this.env.getMap()) == true) {
 			this.setX(this.getX() - 16);
 		} else {
 			this.setX(this.getX() + 1);
@@ -167,7 +167,7 @@ public abstract class Acteur  {
 
 	public void DeplacerLeft() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16 ][(this.getX() / 16 )])
-				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
+				|| this.collisionEntreLinkEtActeurs(this.env.getMap()) == true) {
 			this.setX(this.getX() + 16);
 		} else {
 			this.setX(this.getX() - 1);
@@ -181,7 +181,7 @@ public abstract class Acteur  {
 
 	public void DeplacerUP() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16][(this.getX() / 16)])
-				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
+				|| this.collisionEntreLinkEtActeurs(this.env.getMap()) == true) {
 			this.setY(this.getY() + 16);
 		} else {
 			this.setY(this.getY() - 1);
@@ -198,7 +198,7 @@ public abstract class Acteur  {
 	
 	public void DeplacerDown() {		
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16 +1][(this.getX() / 16)])
-				|| this.collisionEntreLinkEtEnnemis(this.env.getMap()) == true) {
+				|| this.collisionEntreLinkEtActeurs(this.env.getMap()) == true) {
 			// position dans le terrain
 			this.setY(this.getY() - 16);
 		} else {
@@ -233,7 +233,7 @@ public abstract class Acteur  {
 	
 	public void CollisionEnnemieRight() {
 		for (Acteur m : this.env.getActeurs()) {
-			if ((m instanceof Gobelin || m instanceof Loup || m instanceof Dragon || m instanceof Princesse) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16 +1)])) {
+			if ((m instanceof Gobelin || m instanceof Loup ) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16 +1)])) {
 					m.setX(m.getX() - 1);
 				}
 			else {
@@ -244,7 +244,7 @@ public abstract class Acteur  {
 	
 	public void CollisionEnnemieLeft() {
 		for (Acteur m : this.env.getActeurs()) {
-			if ((m instanceof Gobelin || m instanceof Loup || m instanceof Dragon  || m instanceof Princesse) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16)])) {
+			if ((m instanceof Gobelin || m instanceof Loup ) && VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[m.getY() / 16][(m.getX() / 16)])) {
 					m.setX(m.getX() +1);
 				}
 			else {
