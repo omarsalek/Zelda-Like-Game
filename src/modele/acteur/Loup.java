@@ -4,8 +4,8 @@ import src.modele.Environnement;
 
 public class Loup extends Acteur{
 
-	public Loup(Environnement env) {
-		super("Loup","mordre", 	4, 12,360, 255, env);
+	public Loup(Environnement env, int x, int y) {
+		super("Loup","mordre", 	2, 12,x, y, env);
 		// TODO Auto-generated consructor stub 
 	} 
 	
@@ -14,9 +14,7 @@ public class Loup extends Acteur{
 
 	@Override
 	public void attaque() {
-		
 		// TODO Auto-generated method stub
-		
 	}
 
 

@@ -20,7 +20,7 @@ import src.modele.armes.Epee;
 import src.modele.armes.BouleDeFeu;
 import src.modele.items.Item;
 import src.modele.items.Potion;
-//Cette classe gère l'environnement
+
 public class Environnement {
 	private boolean linkTire =false;
 	private int direction;
@@ -281,8 +281,8 @@ public class Environnement {
 	public void init() {
 		this.ajouterItem(new Potion(this));
 		this.ajouterActeur(new Archers(this, 96, 320));
-		this.ajouterActeur(new Loup(this));
 		this.ajouterActeur(new Gobelin(this, 532, 416));
+		this.ajouterActeur(new Loup(this,384, 256));
 		this.ajouterArme(new Epee(this));
 		this.ajouterArme(new Fleche(this));
 		this.ajouterArme(new BallePistolet(this));
