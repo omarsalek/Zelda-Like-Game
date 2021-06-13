@@ -20,7 +20,7 @@ import src.modele.armes.Epee;
 import src.modele.armes.BouleDeFeu;
 import src.modele.items.Item;
 import src.modele.items.Potion;
-
+//Cette classe gère l'environnement
 public class Environnement {
 	private boolean linkTire =false;
 	private int direction;
