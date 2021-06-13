@@ -9,12 +9,10 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
 import src.application.vue.VueItems;
@@ -28,13 +26,13 @@ import src.modele.acteur.Vendeur;
 
 public class Controleur implements Initializable {
 	@FXML
-	private Ellipse Coeurs;
+	private Ellipse coeurs;
+	@FXML
+    private Label aide;
 	@FXML
 	private TilePane tilepane;
 	@FXML
 	private Pane pane;
-	@FXML
-	private Button CommencerJeu;
 	@FXML
 	private Label labelNbMorts;
 	@FXML
@@ -198,7 +196,6 @@ public class Controleur implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		map = new Terrain();
-		Coeurs.setFill(Color.RED);
 		this.env = new Environnement(960, 639, map);
 		this.link = new Link(env);
 		this.env.ajouterActeur(link);
@@ -211,11 +208,11 @@ public class Controleur implements Initializable {
 		this.env.init();
 		this.env.getArmes().addListener(new MonObservateurArmes(this.pane, env));
 		this.env.getActeurs().addListener(new MonObservateurActeurs(this.pane, env));
-		Coeurs.radiusXProperty().bind(this.link.pointsVIE());
-		MonObservateurActeurs ActeursVues = new MonObservateurActeurs(pane, env);
-		MonObservateurArmes ArmesVues = new MonObservateurArmes(pane, env);
-		ActeursVues.afficherActeurs();
-		ArmesVues.afficherArmes();
+		coeurs.radiusXProperty().bind(this.link.pointsVIE());
+		MonObservateurActeurs acteurs = new MonObservateurActeurs(pane, env);
+		MonObservateurArmes armes = new MonObservateurArmes(pane, env);
+		acteurs.afficherActeurs();
+		armes.afficherArmes();
 		this.env.nbMortsProperty().addListener((obse, old, nouv) -> this.labelNbMorts.setText(nouv.toString()));
 		this.env.nbpieceProperty().addListener((obse, old, nouv) -> this.nbpieceOr.setText(nouv.toString()));
 		this.env.discussionProperty().addListener((obse, old, nouv) -> this.labelDiscussion.setText(nouv.toString()));

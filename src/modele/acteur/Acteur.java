@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import src.application.vue.VueTerrain;
 import src.modele.Environnement;
 import src.modele.Terrain;
+import src.modele.exceptions.ActeurException;
+import src.modele.exceptions.EnvironnementException;
 
 public abstract class Acteur  {
 	
@@ -54,10 +56,9 @@ public abstract class Acteur  {
 		return yProperty.getValue();
 	}
 
-	public final void setY(int y) {
-		if (this.env.estDansleTerrainY(y)) {
+	public final void setY(int y){
+		if (!this.env.estDansleTerrainY(y));
 			yProperty.setValue(y);
-		}
 	}
 
 	public final IntegerProperty yProperty() {
@@ -128,7 +129,7 @@ public abstract class Acteur  {
 		}
 	}
 
-	public boolean collisionsEntreActeurs(Terrain t) {
+	public boolean collisionsEntreActeurs() {
 		for (Acteur m : this.env.getActeurs()) {
 			if (m instanceof Gobelin || m instanceof Loup || m instanceof Archers || m instanceof Dragon
 					|| m instanceof Princesse) {
@@ -142,13 +143,12 @@ public abstract class Acteur  {
 
 	public void deplacerRight() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16][(this.getX() / 16 + 1)])
-				|| this.collisionsEntreActeurs(this.env.getMap()) == true) {
+				|| this.collisionsEntreActeurs()) {
 			this.setX(this.getX() - 16);
 		} else {
 			this.setX(this.getX() + 1);
-			this.env.setDirection(1);
-			this.env.trouverBalleDePistolet().setX(this.getX());
-			this.env.trouverBalleDePistolet().setY(this.getY());
+			this.env.setDirectionDuTir(1);
+			this.directionDuTir();
 		}
 		System.out.println("x" + getX());
 		System.out.println("y" + getY());
@@ -156,13 +156,12 @@ public abstract class Acteur  {
 
 	public void deplacerLeft() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16][(this.getX() / 16)])
-				|| this.collisionsEntreActeurs(this.env.getMap()) == true) {
+				|| this.collisionsEntreActeurs()) {
 			this.setX(this.getX() + 16);
 		} else {
 			this.setX(this.getX() - 1);
-			this.env.setDirection(3);
-			this.env.trouverBalleDePistolet().setX(this.getX());
-			this.env.trouverBalleDePistolet().setY(this.getY());
+			this.env.setDirectionDuTir(3);
+			this.directionDuTir();
 		}
 		System.out.println("x" + getX());
 		System.out.println("y" + getY());
@@ -170,15 +169,14 @@ public abstract class Acteur  {
 
 	public void deplacerUp() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16][(this.getX() / 16)])
-				|| this.collisionsEntreActeurs(this.env.getMap()) == true) {
+				|| this.collisionsEntreActeurs()) {
 			this.setY(this.getY() + 16);
 		} else {
 			this.setY(this.getY() - 1);
-			this.env.setDirection(4);
+			this.env.setDirectionDuTir(4);
 			System.out.println("x" + getX());
 			System.out.println("y" + getY());
-			this.env.trouverBalleDePistolet().setX(this.getX());
-			this.env.trouverBalleDePistolet().setY(this.getY());
+			this.directionDuTir();
 
 		}
 
@@ -186,13 +184,12 @@ public abstract class Acteur  {
 
 	public void deplacerDown() {
 		if (VueTerrain.collisions(this.env.getMap().lireFichier(this.getNom_map())[this.getY() / 16 + 1][(this.getX() / 16)])
-				|| this.collisionsEntreActeurs(this.env.getMap()) == true) {
+				|| this.collisionsEntreActeurs()) {
 			this.setY(this.getY() - 16);
 		} else {
 			this.setY(this.getY() + 1);
-			this.env.setDirection(2);
-			this.env.trouverBalleDePistolet().setX(this.getX());
-			this.env.trouverBalleDePistolet().setY(this.getY());
+			this.env.setDirectionDuTir(2);
+			this.directionDuTir();
 			if (this.getY() == 600) {
 				this.transitionMap2 = true;
 				this.setY(-1);
@@ -203,6 +200,11 @@ public abstract class Acteur  {
 		}
 	}
 
+	public void directionDuTir() {
+		this.env.trouverBalleDePistolet().setX(this.getX());
+		this.env.trouverBalleDePistolet().setY(this.getY());
+	}
+	
 	public void setTransitionMap2(boolean chargerLaDeuxiemeMap) {
 		this.transitionMap2 = chargerLaDeuxiemeMap;
 	}

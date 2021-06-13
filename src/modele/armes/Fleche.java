@@ -1,5 +1,7 @@
 package src.modele.armes;
 
+import javax.swing.JOptionPane;
+
 import src.modele.Environnement;
 import src.modele.acteur.Link;
 
@@ -17,10 +19,8 @@ public class Fleche extends Arme {
 			m.decrementerPv(this.getTirer());
 		}
 		if (m.getPtv()<=0) {
-			System.out.println("Link est Mort");
+			JOptionPane.showMessageDialog(null, "Link est mort ! Game Over.");
+			m.setPTV(50);
 		}
 	}
-
-
-
 }

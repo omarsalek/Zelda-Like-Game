@@ -17,64 +17,59 @@ public class VueArmes {
 	}
 
 	public void afficherArc(Arme arc) {
-		Image Arc = new Image(getClass().getResourceAsStream("fleche.png"));
-		ImageView ArcVue = new ImageView(Arc);
+		Image arc_img = new Image(getClass().getResourceAsStream("../img/fleche.png"));
+		ImageView arcVue = new ImageView(arc_img);
 		//On lui donne un id
-		ArcVue.setId(arc.getId());
-		ArcVue.translateXProperty().bind(arc.getxProperty());
-		ArcVue.translateYProperty().bind(arc.getyProperty());
+		arcVue.setId(arc.getId());
+		arcVue.translateXProperty().bind(arc.getxProperty());
+		arcVue.translateYProperty().bind(arc.getyProperty());
 		//Quand on click sur l'arc la console affiche ses informations.
-		ArcVue.setOnMouseClicked(e -> System.out.println("Attention " + arc.getId() + " est un arc !"));
-		pane.getChildren().add(ArcVue);
+		arcVue.setOnMouseClicked(e -> System.out.println("Attention " + arc.getId() + " est un arc !"));
+		pane.getChildren().add(arcVue);
 
 	}
-	public void afficherBalleDePistolet(Arme bullet) {
-		Image Bullet1 = new Image(getClass().getResourceAsStream("bullet.png"));
-		ImageView BulletVue = new ImageView(Bullet1);
+	public void afficherBalleDePistolet(Arme balleDePistolet) {
+		Image balle = new Image(getClass().getResourceAsStream("../img/bullet.png"));
+		ImageView balleVue = new ImageView(balle);
 		//On lui donne un id
-		BulletVue.setId(bullet.getId());
-		BulletVue.translateXProperty().bind(bullet.getxProperty());
-		BulletVue.translateYProperty().bind(bullet.getyProperty());
-		//Quand on click sur l'arc la console affiche ses informations.
-		BulletVue.setOnMouseClicked(e -> System.out.println("Attention " + bullet.getId() + " est une bullet !"));
-		pane.getChildren().add(BulletVue);
+		balleVue.setId(balleDePistolet.getId());
+		balleVue.translateXProperty().bind(balleDePistolet.getxProperty());
+		balleVue.translateYProperty().bind(balleDePistolet.getyProperty());
+		pane.getChildren().add(balleVue);
 
 	}
 
 	public void afficherEpee(Arme epee) {
-		Image Epee = new Image(getClass().getResourceAsStream("epee.png"));
-		ImageView EpeeVue = new ImageView(Epee);
+		Image epee_img = new Image(getClass().getResourceAsStream("../img/epee.png"));
+		ImageView epeeVue = new ImageView(epee_img);
 		// On lui donne un id
-		EpeeVue.setId(epee.getId());
-		EpeeVue.translateXProperty().bind(epee.getxProperty());
-		EpeeVue.translateYProperty().bind(epee.getyProperty());
-		// Quand on click sur l'epee la console affiche ses informations.
-		EpeeVue.setOnMouseClicked(e -> System.out.println("Attention " + epee.getId() + " est un epee !"));
-		pane.getChildren().add(EpeeVue);
+		epeeVue.setId(epee.getId());
+		epeeVue.translateXProperty().bind(epee.getxProperty());
+		epeeVue.translateYProperty().bind(epee.getyProperty());
+		epeeVue.setOnMouseClicked(e -> System.out.println("Attention " + epee.getId() + " est un epee !"));
+		pane.getChildren().add(epeeVue);
 
 	}
-	public void afficherpistolet(Arme a) {
-		Image pisto = new Image(getClass().getResourceAsStream("pistolet.PNG"));
-		ImageView pistoVue = new ImageView(pisto);
+	public void afficherpistolet(Arme pistolet) {
+		Image pistolet_img = new Image(getClass().getResourceAsStream("../img/pistolet.PNG"));
+		ImageView pistoletVue = new ImageView(pistolet_img);
 		//On lui donne un id
-		pistoVue.setId(a.getId());
-		pistoVue.translateXProperty().bind(a.getxProperty());
-		pistoVue.translateYProperty().bind(a.getyProperty());
-		//Quand on click sur l'arc la console affiche ses informations.
-		pistoVue.setOnMouseClicked(e -> System.out.println("Attention " + a.getId() + " est un pistolet!"));
-		pane.getChildren().add(pistoVue);
+		pistoletVue.setId(pistolet.getId());
+		pistoletVue.translateXProperty().bind(pistolet.getxProperty());
+		pistoletVue.translateYProperty().bind(pistolet.getyProperty());
+		pistoletVue.setOnMouseClicked(e -> System.out.println("Attention " + pistolet.getId() + " est un pistolet!"));
+		pane.getChildren().add(pistoletVue);
 
 	}
-	public void afficherFeu(Arme a) {
-		Image Feu = new Image(getClass().getResourceAsStream("FeuDragon.PNG"));
-		ImageView FeuVue = new ImageView(Feu);
+	public void afficherFeu(Arme bouleDeFeu) {
+		Image bouleDeFeu_img = new Image(getClass().getResourceAsStream("../img/FeuDragon.PNG"));
+		ImageView bouleDeFeuVue = new ImageView(bouleDeFeu_img);
 		//On lui donne un id
-		FeuVue.setId(a.getId());
-		FeuVue.translateXProperty().bind(a.getxProperty());
-		FeuVue.translateYProperty().bind(a.getyProperty());
-		//Quand on click sur l'arc la console affiche ses informations.
-		FeuVue.setOnMouseClicked(e -> System.out.println("Attention " + a.getId() + " c'est du feu"));
-		pane.getChildren().add(FeuVue);
+		bouleDeFeuVue.setId(bouleDeFeu.getId());
+		bouleDeFeuVue.translateXProperty().bind(bouleDeFeu.getxProperty());
+		bouleDeFeuVue.translateYProperty().bind(bouleDeFeu.getyProperty());
+		bouleDeFeuVue.setOnMouseClicked(e -> System.out.println("Attention " + bouleDeFeu.getId() + " c'est du feu"));
+		pane.getChildren().add(bouleDeFeuVue);
 
 	}
 }

@@ -23,11 +23,11 @@ public class VueTerrain {
 	
 	public void afficherterrain() {
 		//On commence par crï¿½er les Image.
-		Image Arbre = new Image(getClass().getResourceAsStream("Arbre.png"));
-		Image Arbre2 = new Image(getClass().getResourceAsStream("Arbre2.png"));
-		Image Eau = new Image(getClass().getResourceAsStream("Eau.png"));
-		Image Herbe = new Image(getClass().getResourceAsStream("Herbe.png"));
-		Image Pierre = new Image(getClass().getResourceAsStream("Pierre.png"));
+		Image Arbre = new Image(getClass().getResourceAsStream("../img/Arbre.png"));
+		Image Arbre2 = new Image(getClass().getResourceAsStream("../img/Arbre2.png"));
+		Image Eau = new Image(getClass().getResourceAsStream("../img/Eau.png"));
+		Image Herbe = new Image(getClass().getResourceAsStream("../img/Herbe.png"));
+		Image Pierre = new Image(getClass().getResourceAsStream("../img/Pierre.png"));
 
 		int[][] codesTuiles = map.lireFichier("map.csv");
 
@@ -80,14 +80,14 @@ public class VueTerrain {
 	}
 	public void afficherterrain2() {
 		//On commence par créer les Image.
-		Image Arbre = new Image(getClass().getResourceAsStream("Arbre.png"));
-		Image drapeau_noir = new Image(getClass().getResourceAsStream("drapeau_noir.png"));
-		Image Arbre2 = new Image(getClass().getResourceAsStream("Arbre2.png"));
-		Image herbe = new Image(getClass().getResourceAsStream("Herbe.png"));
-		Image pierre = new Image(getClass().getResourceAsStream("Pierre.png"));
-		Image sol = new Image(getClass().getResourceAsStream("sol.png"));
-		Image feu = new Image(getClass().getResourceAsStream("feu.png"));
-		Image lave = new Image(getClass().getResourceAsStream("lave.png"));
+		Image Arbre = new Image(getClass().getResourceAsStream("../img/Arbre.png"));
+		Image drapeau_noir = new Image(getClass().getResourceAsStream("../img/drapeau_noir.png"));
+		Image Arbre2 = new Image(getClass().getResourceAsStream("../img/Arbre2.png"));
+		Image herbe = new Image(getClass().getResourceAsStream("../img/Herbe.png"));
+		Image pierre = new Image(getClass().getResourceAsStream("../img/Pierre.png"));
+		Image sol = new Image(getClass().getResourceAsStream("../img/sol.png"));
+		Image feu = new Image(getClass().getResourceAsStream("../img/feu.png"));
+		Image lave = new Image(getClass().getResourceAsStream("../img/lave.png"));
 
 		int[][] codesTuiles = map.lireFichier("map2.csv");
 

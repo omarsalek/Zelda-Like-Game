@@ -17,61 +17,61 @@ public class VueActeurs {
 	 
 
 	public void afficherLoup(Acteur m) {
-		Image Lop = new Image(getClass().getResourceAsStream("Loup.png"));
-		ImageView LoupVue = new ImageView(Lop);
+		Image loup = new Image(getClass().getResourceAsStream("../img/Loup.png"));
+		ImageView loupVue = new ImageView(loup);
 		// On lui donne un id
-		LoupVue.setId(m.getId());
-		LoupVue.translateXProperty().bind(m.xProperty());
-		LoupVue.translateYProperty().bind(m.yProperty());
+		loupVue.setId(m.getId());
+		loupVue.translateXProperty().bind(m.xProperty());
+		loupVue.translateYProperty().bind(m.yProperty());
 		// Quand on click sur le loup la console affiche ses informations.
-		LoupVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un loup!"));
-		pane.getChildren().add(LoupVue);
+		loupVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un loup!"));
+		pane.getChildren().add(loupVue);
 
 	}
 
 	public void afficherGobelin(Acteur m) {
 		// On attribue au gobelin une image.
-		Image Gob = new Image(getClass().getResourceAsStream("Gobelin2.png"));
-		ImageView GobelinVue = new ImageView(Gob);
+		Image gobelin = new Image(getClass().getResourceAsStream("../img/Gobelin2.png"));
+		ImageView gobelinVue = new ImageView(gobelin);
 		// On lui donne un id
-		GobelinVue.setId(m.getId());
-		GobelinVue.translateXProperty().bind(m.xProperty());
-		GobelinVue.translateYProperty().bind(m.yProperty());
+		gobelinVue.setId(m.getId());
+		gobelinVue.translateXProperty().bind(m.xProperty());
+		gobelinVue.translateYProperty().bind(m.yProperty());
 		// Quand on click sur le gobelin la console affiche ses informations.
-		GobelinVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un gobelin !"));
-		pane.getChildren().add(GobelinVue);
+		gobelinVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un gobelin !"));
+		pane.getChildren().add(gobelinVue);
 
 	}
 
 	public void afficherArcher(Acteur m) {
 
 		// On attribue au archer une image.
-		Image Archers = new Image(getClass().getResourceAsStream("archer.png"));
-		ImageView ArcherVue = new ImageView(Archers);
+		Image archer = new Image(getClass().getResourceAsStream("../img/archer.png"));
+		ImageView archerVue = new ImageView(archer);
 		// On lui donne un id
-		ArcherVue.setId(m.getId());
-		ArcherVue.translateXProperty().bind(m.xProperty());
-		ArcherVue.translateYProperty().bind(m.yProperty());
+		archerVue.setId(m.getId());
+		archerVue.translateXProperty().bind(m.xProperty());
+		archerVue.translateYProperty().bind(m.yProperty());
 		// Quand on click sur l'archer la console affiche ses informations.
-		ArcherVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un archer !"));
-		pane.getChildren().add(ArcherVue);
+		archerVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un archer !"));
+		pane.getChildren().add(archerVue);
 
 	}
 
 	public void afficherDragon(Acteur m) {
-		Image dragon1 = new Image(getClass().getResourceAsStream("BossDragon.png"));
-		ImageView dragonvue = new ImageView(dragon1);
+		Image dragon = new Image(getClass().getResourceAsStream("../img/BossDragon.png"));
+		ImageView dragonVue = new ImageView(dragon);
 		// On lui donne un id
-		dragonvue.setId(m.getId());
-		dragonvue.translateXProperty().bind(m.xProperty());
-		dragonvue.translateYProperty().bind(m.yProperty());
+		dragonVue.setId(m.getId());
+		dragonVue.translateXProperty().bind(m.xProperty());
+		dragonVue.translateYProperty().bind(m.yProperty());
 		// Quand on click sur le gobelin la console affiche ses informations.
-		dragonvue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un dragon !"));
-		pane.getChildren().add(dragonvue);
+		dragonVue.setOnMouseClicked(e -> System.out.println("Attention " + m.getId() + " est un dragon !"));
+		pane.getChildren().add(dragonVue);
 	}
 
 	public void afficherZelda(Acteur m) {
-		Image zelda = new Image(getClass().getResourceAsStream("zelda.png"));
+		Image zelda = new Image(getClass().getResourceAsStream("../img/zelda.png"));
 		ImageView zeldaVue = new ImageView(zelda);
 		// On lui donne un id
 		zeldaVue.setId(m.getId());

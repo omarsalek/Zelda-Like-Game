@@ -159,9 +159,9 @@ public class Environnement {
 	}
 
 	public boolean estDansleTerrainX(int x) {
-
+		
 		return (-1 <= x && x < this.width);
-
+		
 	}
 
 	public boolean estDansleTerrainY(int y) {
@@ -176,7 +176,7 @@ public class Environnement {
 	public int getDirection() {
 		return direction;
 	}
-	public void setDirection(int detecterPoSTirage) {
+	public void setDirectionDuTir(int detecterPoSTirage) {
 		direction = detecterPoSTirage;
 	}
 	public int getWidth() {

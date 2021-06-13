@@ -16,7 +16,7 @@ public class VueLink {
 
     //Cette méthode va créer Link dans la vue.
     public void creerLink(Link link) {
-        Image link1 = new Image(getClass().getResourceAsStream("hero.png"));
+        Image link1 = new Image(getClass().getResourceAsStream("../img/hero.png"));
         ImageView linkView = new ImageView(link1);
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());
@@ -25,7 +25,7 @@ public class VueLink {
 
     }
     public void modifierLinkEpee(Link link) {
-        Image link2 = new Image(getClass().getResourceAsStream("LinkAvecepee.png"));
+        Image link2 = new Image(getClass().getResourceAsStream("../img/LinkAvecepee.png"));
         ImageView linkView = new ImageView(link2);
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());
@@ -34,7 +34,7 @@ public class VueLink {
     	
     }
     public void modifierLinkPistolet(Link link) {
-        Image link3 = new Image(getClass().getResourceAsStream("LinkAvecPistolet.png"));
+        Image link3 = new Image(getClass().getResourceAsStream("../img/LinkAvecPistolet.png"));
         ImageView linkView = new ImageView(link3);
         linkView.translateXProperty().bind(link.xProperty());
         linkView.translateYProperty().bind(link.yProperty());

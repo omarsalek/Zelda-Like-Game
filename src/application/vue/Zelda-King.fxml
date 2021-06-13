@@ -18,7 +18,7 @@
             <Font size="22.0" />
          </font>
          <graphic>
-            <Ellipse fx:id="Coeurs" fill="DODGERBLUE" radiusX="58.0" radiusY="14.0" stroke="BLACK" strokeType="INSIDE" />
+            <Ellipse fx:id="coeurs" fill="#ff2e1f" radiusX="52.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" />
          </graphic>
       </Label>
    </top>
@@ -58,6 +58,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label fx:id="aide" prefHeight="101.0" prefWidth="219.0" text="       Appuyez sur H si vous êtes perdu !" />
          </children></VBox>
    </left>
 </BorderPane>

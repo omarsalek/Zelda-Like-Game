@@ -14,13 +14,12 @@ public class VueItems {
 	private Pane pane;
 
 	  //Constructeur
-	 
 	  public VueItems(Pane pane) {
 	      this.pane = pane;
 	  }  
 	  
 	  public void afficherPotion(Item i) {
-		  Image Potion = new Image(getClass().getResourceAsStream("PotionDeVie.png"));
+		  Image Potion = new Image(getClass().getResourceAsStream("../img/PotionDeVie.png"));
 		  ImageView PotionView = new ImageView(Potion);
 		  PotionView.setId(i.getId());
 		  PotionView.translateXProperty().bind(i.getxProperty());
@@ -29,15 +28,15 @@ public class VueItems {
 	  }
 	  
 	  public void afficherShop() {
-			Image Shop = new Image(getClass().getResourceAsStream("magasin.png"));
+			Image Shop = new Image(getClass().getResourceAsStream("../img/magasin.png"));
 			ImageView ShopVue = new ImageView(Shop);
 			ShopVue.setTranslateX(116);
 			ShopVue.setTranslateY(137);
-			ShopVue.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null,"Bienvenue au shop !"));
+			ShopVue.setOnMouseClicked(e -> JOptionPane.showMessageDialog(null,"../img/Bienvenue au shop !"));
 			pane.getChildren().add(ShopVue);
 		}
 	  public void afficherChateau() {
-			Image chateau = new Image(getClass().getResourceAsStream("chateau.png"));
+			Image chateau = new Image(getClass().getResourceAsStream("../img/chateau.png"));
 			ImageView chateauVue = new ImageView(chateau);
 			chateauVue.setTranslateX(700);
 			chateauVue.setTranslateY(80);

@@ -8,7 +8,7 @@ import src.modele.acteur.Link;
 public class BouleDeFeu extends Arme{
 
 	public BouleDeFeu( Environnement env) {
-		super("feu", 730, 264, 4, 8, env);
+		super("feu", 730, 264, 4, 12, env);
 	}
 	public void tirerBouleDeFeu(Link m) {
 		int val = (int) (1+ Math.random()*(200));
@@ -20,7 +20,8 @@ public class BouleDeFeu extends Arme{
 			m.decrementerPv(this.getTirer());
 		}
 		if (m.getPtv() <= 0) {
-			JOptionPane.showMessageDialog(null, "Game Over");
+			JOptionPane.showMessageDialog(null, "Link est mort ! Game Over.");
+			m.setPTV(50);
 		}
 	}
 
